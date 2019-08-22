@@ -60,7 +60,7 @@
 
 ### How does DNS work normally?
 
-**This is a simplified example of a standard DNS setup process (without Solana DNS or DNSSEC):**
+<details><summary><b>This is a simplified example of a standard DNS setup process (without Solana DNS or DNSSEC):</b></summary>
 
 1. You register a domain `example.com` on the Namecheap Registrar
 
@@ -74,7 +74,9 @@ usually using a protocol called the [Extensible Provisioning Protocol (EPP)](htt
 
 5. In your DigitalOcean account you configure the domain's DNS and set the `example.com` `A` record to `123.123.123.123`
 
-**Then a user comes along and makes a DNS request for your domain `example.com` using their configured DNS upstream server `1.1.1.1`:**
+</details>
+
+<details><summary><b>Then a user comes along and makes a DNS request for your domain `example.com` using their configured DNS upstream server `1.1.1.1`:</b></summary>
 
 1. User's device sends a DNS query to `1.1.1.1:53/udp` asking for the `example.com` `A` record (in plain text, unencrypted)
 
@@ -91,7 +93,9 @@ usually using a protocol called the [Extensible Provisioning Protocol (EPP)](htt
 7. The user receives back an unencrypted, unsigned, plaintext response containing `123.123.123.123`, 
 stating that `1.1.1.1` was the server that answered the request
 
-**Unfortunately this system has a number of major security flaws! Can you spot some of them?**
+</details>
+
+<details><summary><b>Unfortunately this system has a number of major security flaws! Can you spot some of them?</b></summary>
 
 - there are many layers of *implicit trust* with no authentication or verification mechanism. You have to trust that
   + `ns1.digitalocean.com`,
@@ -105,7 +109,9 @@ stating that `1.1.1.1` was the server that answered the request
   that DNS record, or if a malicious/buggy/hacked middle-box just decided to return a different value randomly.  
   With no signature or public key to verify against, there's no way to know whether the response value has been tampered with.
 
-**Enter DNSSEC & DNS-over-HTTPS... two separate technologies aiming to solve two of the biggest issues.**
+</details>
+
+<details><summary><b>Enter DNSSEC & DNS-over-HTTPS... two separate technologies aiming to solve two of the biggest issues.</b></summary>
 
 - DNSSEC partially fixes the authentication issue by allowing people to pin a public key along with their authoritative
 name servers at the registrar level (NameCheap) / root DNS level (`.com` root servers). The user can then use the corresponding
@@ -118,7 +124,9 @@ encrypted connection to their upstream DNS servers, and authenticate the server'
 This makes one link in the chain trusted, but it does nothing for the links upstream from the user's DNS server unless they're also using DNS over HTTPS
 or an equivalent encrypted transit method (which luckily many major providers do use).
 
-**So what does Solana add to the equation?**
+</details>
+
+<details><summary><b>So what does Solana add to the equation?</b></summary>
 
 It removes the root DNS servers from the trust equation (e.g. the `.com` TLD servers).  Remember that they have ultimate control over all record authentication because
 they could choose to ignore or maliciously change the DNSSEC public key that you published via the registrar.  This implicit trust can be removed
@@ -138,7 +146,9 @@ Because all records are signed all the way up to the root using the domain owner
 can serve up records without users having to implicitly trust them.  The query results
 will always arrive signed with a key that can be verified to ensure malicous middle-boxes cant get away with modifying records.
 
-**Potential problems?**
+</details>
+
+<details><summary><b>Potential problems?</b></summary>
 
 - Solana may be fast, but the RPC communication with the Solana chain may be significantly slower than DNS over UDP
 - If RPC communication becomes the bottleneck, we end up having to implement time-synchronized caching servers with fairly 
@@ -154,6 +164,8 @@ Given the power of an immutable, globally sychronized database, with key-based i
 many of the distributed-systems and authentication problems that have plagued DNS in the past become drastically easier to solve.
 Unfortunately, designing DNS system to seamlessly augment or entirely replace existing DNS authentication mechanisms is incredibly complex.
 Though our ambitions are big, this project will likely have to make some decisions early on to narrow the scope and pick a few core features to focus on as a proof-of-concept.
+
+</details>
 
 ---
 
@@ -266,7 +278,7 @@ Build and upload the Rust BPF program that runs on the Solana net to handle requ
 
 ### Data flow
 
-The data flows through the stack like this:
+<details><summary>The data flows through the stack like this: (click to expand)</summary>
 
 - ⬇️👩‍💻📃 **User**  
     *Makes requests via DNS or HTTP.*  
@@ -288,9 +300,11 @@ The data flows through the stack like this:
     *Solana provides the data storage layer to hold the records.*  
     `<Solana internals>` (stored as text blobs on-chain)  
 
+</details>
+
 ### Execution Flow
 
-The code execution flow looks like this:
+<details><summary>The code execution flow looks like this: (click to expand)</summary>
 
 1. New Solana account gets created with some free air-dropped tokens (needed to run code on-chain)  
    `./bin/signup` -> `./network/signup.js`  
@@ -315,6 +329,8 @@ The code execution flow looks like this:
 
 7. If record is found, results are returned back up the stack, if not, they're resolved via the upstream DNS servers
    `./server/dns-client.js` -> `<upstream DNS servers>`
+
+</details>
 
 ### Solana Architecture
 
@@ -358,7 +374,7 @@ Config options can be passed to Solana DNS commands (e.g. `./bin/server`) in a f
 3. [CLI Parameters](#CLI-Parameters) (which override both env variables and config file params)
 
 
-### >CLI Parameters
+### CLI Parameters
 
 <details><summary>Click to expand CLI parameter docs</summary>
 
