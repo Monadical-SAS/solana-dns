@@ -33,16 +33,16 @@
 - [Provable history by design.](https://medium.com/solana-labs/proof-of-history-a-clock-for-blockchain-cf47a61a9274)  
   Records are cryptographically provable to have existed at a given time.
   
-- [Inherently authenticated.](https://github.com/solana-labs/example-messagefeed#new-user-sign-up)  
-  All records are signed with your wallet private key, and can be verified against your public key.  
-  Remember though, for true authentication *signing alone is meaningless unless your public keys are provably linked to your identity* (e.g. via public PGP signed message, Keybase.io, etc).  
-  Solana is not an identity provider, but Solana can link accounts to other identity providers like [Google Auth](https://github.com/solana-labs/example-messagefeed#new-user-sign-up).
-  
 - [Inherently immutable.](https://solana-labs.github.io/book/#what-is-a-solana-cluster)  
   Past history can never be modified, whether by accident or maliciously.
   
 - [Inherently distributed and fault-tolerant.](https://solana-labs.github.io/book/validator-proposal.html)  
   A globally-distributed network of nodes serve as validators, data replicas, and leaders in the event of a fail-over.
+
+- [Inherently authenticatable.](https://github.com/solana-labs/example-messagefeed#new-user-sign-up)  
+  All records are signed with your wallet private key, and can be verified against your public key.  
+  Remember though, for true authentication *signing alone is meaningless unless your public keys are provably linked to your identity* (e.g. via public PGP signed message, Keybase.io, etc).  
+  Solana is not an identity provider, but Solana can link accounts to other identity providers like [Google Auth](https://github.com/solana-labs/example-messagefeed#new-user-sign-up).
   
 - [It's fast as hell.](https://solana.com/solana-milestone-a-multinode-testnet/)  
   The network leader can theoretically handle **710,000 TPS**, and this library additionally caches records locally up to the signed TTL.  
