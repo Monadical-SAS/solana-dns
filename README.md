@@ -9,6 +9,7 @@
 <br/>
 <a href="#Why-Solana-">Why Solana?</a> | 
 <a href="#Quickstart">Quickstart</a> | 
+<a href="#Documentation">Documentation</a> | 
 <a href="#Manual-Setup">Manual Setup</a> | 
 <a href="#Architecture">Architecture</a> | 
 <a href="#Configuration">Configuration</a> | 
@@ -27,7 +28,7 @@
 <hr/>
 </div>
 
-### Why Solana?
+## Why Solana?
 
 - [Provable history by design.](https://medium.com/solana-labs/proof-of-history-a-clock-for-blockchain-cf47a61a9274)  
   Records are cryptographically provable to have existed at a given time.
@@ -63,6 +64,12 @@ cd solana-dns
 dig @127.0.0.1 -p 5300 google.com
 ```
 If don't like helper scripts installing packages and want to understand/fine-tune the setup, or if you encounter any issues, follow the [Manual Setup](#Manual-Setup) steps below.
+
+---
+
+# Documentation
+
+---
 
 ## Manual Setup
 
