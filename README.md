@@ -359,6 +359,8 @@ Config options can be passed to Solana DNS commands (e.g. `./bin/server`) in a f
 
 ### CLI Parameters
 
+<details><summary>Click to expand CLI parameter docs</summary>
+
 #### `--config=path/to/file.conf`
 
 **Default:** `--config=./secrets.env`  
@@ -397,7 +399,11 @@ The default is `off`, meaning it will return "no result found" if the record is 
 To make it a usable DNS server for all queries, and not just records stored in Solana, it's recommended
 to run with a few upstream servers capable of resolving normal internet-level DNS records.
 
+</details>
+
 ### Configuration File
+
+<details><summary>Click to expand configuration file docs</summary>
 
 When running the server, the path to the config file should be specified via the `--config=path/to/file.env` CLI param.
 
@@ -424,7 +430,11 @@ SOLANA_DNS_BIND_HTTP=127.0.0.1:5380
 SOLANA_DNS_UPSTREAM=1.1.1.1,8.8.8.8,208.67.222.222
 ```
 
+</details>
+
 ### Environment Variables
+
+<details><summary>Click to expand environment variable docs</summary>
 
 The options in the config file can also be passed as environment varaibles using the same format. e.g.:  
 ```bash
@@ -432,6 +442,8 @@ env SOLANA_DNS_BIND_DNS=127.0.0.1:5300 ./bin/server ...
 ```
 
 (This works well to pass config when running inside a Docker container)
+
+</details>
 
 ---
 
@@ -446,6 +458,8 @@ env SOLANA_DNS_BIND_DNS=127.0.0.1:5300 ./bin/server ...
 ---
 
 ### CLI
+
+<details><summary>Click to expand CLI usage docs</summary>
 
 #### Start the server
 
@@ -509,9 +523,13 @@ with any existing local DNS server. To bind to the the standard DNS port (UDP `5
 
 TODO
 
+</details>
+
 ---
 
 ### Rest API
+
+<details><summary>Click to expand Rest API docs</summary>
 
 #### GET `/api/dns/A/{domain}`
 
@@ -540,6 +558,8 @@ Return the DNS ZONE.
 #### GET `/api/dns/status`
 
 Return the DNS server status.
+
+</details>
 
 ---
 
