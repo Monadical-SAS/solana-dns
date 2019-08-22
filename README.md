@@ -28,8 +28,10 @@ npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1
 dig @127.0.0.1 -p 5300 google.com
 ```
 
-**To view the Web UI:**  
+**To view the Web UI:**
+```
 Open http://127.0.0.1:5380
+```
 
 **To query the REST API:**
 ```bash
