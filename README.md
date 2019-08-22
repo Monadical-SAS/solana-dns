@@ -40,7 +40,44 @@ curl http://127.0.0.1:5380/dns/api/v1/name/google.com
   
 **Default:** `--bind-dns=127.0.0.1:5300`  
 
-**To run the server on port 53 (the standard DNS port):**
+Specify the local [ip]:[port] to bind the DNS server to. It must be `0.0.0.0:53` to act
+as a standard public DNS server that can accept requests from any client (instead of just localhost).
+
+#### `--bind-http`
+
+**Format:** `--bind-http=[host]:[port]`  
+**Example:** `--bind-http=127.0.0.1:5380`  
+  
+**Default:** `--bind-http=off`  
+
+Specify the local [ip]:[port] to bind the web UI server to. It must be `0.0.0.0:[port]` in 
+order to accept HTTP requests from any client (instead of just localhost).
+
+#### `--upstream=x.x.x.x,y.y.y.y`
+
+**Format:** `--upstream=[host]:[port],[host2]:[port2],...`  
+**Example:** `--bind-dns=208.67.222.222,dns.example.com:5353`  
+  
+**Default:** `--bind-dns=1.1.1.1,8.8.8.8,208.67.222.222`
+
+Specify which upstream DNS servers to send requests to when the query cannot be resolved via Solana DNS.
+
+
+
+## Usage
+
+### CLI
+
+#### Start the server
+
+```bash
+npm run server [options]  # see Configuration section for options
+```
+
+#### Start the server on port 53
+
+By default the DNS server listens on a custom UDP port `5300` in order to avoid requiring `sudo` or conflicting
+with any existing local DNS server. To bind to the the standard DNS port (UDP `53`) instead, follow the steps below.
 
 1. Check to see if a DNS server is already running on `127.0.0.1:53`
     ```bash
@@ -77,37 +114,6 @@ curl http://127.0.0.1:5380/dns/api/v1/name/google.com
     nameserver 127.0.0.1
     ```
     On macOS you can set this under `System Preferences > Networking > Advanced > DNS > +`.
-
-#### `--bind-http`
-
-**Format:** `--bind-http=[host]:[port]`  
-**Example:** `--bind-http=127.0.0.1:5380`  
-  
-**Default:** `--bind-http=off`  
-
-Specify the local [ip]:[port] to bind the web UI server to. It must be `0.0.0.0:[port]` in 
-order to accept HTTP requests from any client and not just localhost.
-
-#### `--upstream=x.x.x.x,y.y.y.y`
-
-**Format:** `--upstream=[host]:[port],[host2]:[port2],...`  
-**Example:** `--bind-dns=208.67.222.222,dns.example.com:5353`  
-  
-**Default:** `--bind-dns=1.1.1.1,8.8.8.8,208.67.222.222`
-
-Specify which upstream DNS servers to send requests to when the query cannot be resolved via Solana DNS.
-
-
-
-## Usage
-
-### CLI
-
-#### Start the server
-
-```bash
-npm run server [options]  # see Configuration section for options
-```
 
 #### Add/Modify/Delete Records
 
