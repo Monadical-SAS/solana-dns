@@ -142,7 +142,7 @@ The data flows through the stack like this:
     *Calls out via Solana w3 JSON RPC API to the Solana network.*  
     `./network/api.js` (runs locally, calls `https://beta.testnet.solana.com:8443` Solana Network endpoint)  
   
-- ⬇️⛓⬆️ **Solana Network Program**  
+- ⬇️⛓⬆️ **Solana BPF Rust Program On-Chain**  
     *BPF Rust program on Solana network handles reads/writes of stored data.*  
     `./network/kvstore.rs` (gets uploaded and runs on-chain)  
   
