@@ -37,6 +37,19 @@ cd solana-dns
 npm install
 ```
 
+**Setup Solana network access and upload the on-chain side of the program:**
+```bash
+# Using the public beta testnet (easiest, but all records will be public)
+npm run signup --net=beta --save-credentials=./secrets.conf
+
+# Using a localnet (harder, but no data leaves your local machine)
+npm run localnet:update && npm run localnet:up
+npm run signup --net=localnet --save-credentials=./secrets.conf
+
+# Then upload the Rust BPF program that runs on-chain to handle the storage requests
+npm run upload --credentials=./secrets.conf
+```
+
 **Run the server on localhost:**
 ```bash
 npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
