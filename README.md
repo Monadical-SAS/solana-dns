@@ -69,6 +69,11 @@ If don't like helper scripts installing packages and want to understand/fine-tun
 
 # Documentation
 
+<a href="#Manual-Setup">Manual Setup</a> | 
+<a href="#Architecture">Architecture</a> | 
+<a href="#Configuration">Configuration</a> | 
+<a href="#Usage">Usage</a>
+
 ---
 
 ## Manual Setup
