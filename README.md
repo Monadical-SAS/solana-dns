@@ -6,10 +6,15 @@ A simple DNS server that uses the high-performance [Solana](https://solana.com/d
 
 ## Quickstart
 
+**Clone the repo & install the dependencies:**
 ```bash
 git clone https://github.com/pirate/solana-dns
 cd solana-dns
 npm install
+```
+
+**Run the server on localhost:**
+```bash
 npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
 
