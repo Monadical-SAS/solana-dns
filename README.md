@@ -94,14 +94,14 @@ Choose which Solana network you want to store your records in:
    # Not available yet, check https://solana.com/tds/ for updates
    ```
 
-**Upload the on-chain side of the program using your account:**
-The Rust BPF program runs on the Solana Network to handles requests from your local server.
+**Upload the on-chain side of the program using your account:**  
+Build and upload the Rust BPF program that runs on the Solana net to handle requests from your local solana-dns server.
 ```
 npm run build:bpf-rust
 npm run upload --credentials=./secrets.conf
 ```
 
-**Run the server on localhost:**
+**Run the solana-dns server on localhost:**
 ```bash
 npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
