@@ -357,7 +357,10 @@ Config options can be passed to Solana DNS commands (e.g. `./bin/server`) in a f
 2. [Environment Variables](#Environment-Variables) (which override any existing options in the config file)
 3. [CLI Parameters](#CLI-Parameters) (which override both env variables and config file params)
 
-<details><summary><h3>CLI Parameters</h3></summary>
+
+### >CLI Parameters
+
+<details><summary>Click to expand CLI parameter docs</summary>
 
 #### `--config=path/to/file.conf`
 
