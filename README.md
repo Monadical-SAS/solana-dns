@@ -2,7 +2,7 @@
 <img src="https://i.imgur.com/mOGmEPW.png" alt="Logo" width="400px"/>
 <h1>Solana DNS</h1>
 <br/>
-<b>A simple DNS server that uses the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> as the backing datastore.</b>
+<b>A simple DNS server using the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> to store records.</b>
 <br/>
 (Implemented in <1000 lines of ES6 JavaScript, including the optional REST API + Web UI)
 <br/><br/>
