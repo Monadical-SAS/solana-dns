@@ -284,6 +284,8 @@ Build and upload the Rust BPF program that runs on the Solana net to handle requ
  - **To view the Web UI:**  
     Open http://127.0.0.1:5380
 
+</details>
+
 ---
 
 ## Architecture
