@@ -24,7 +24,7 @@
 <sub>You can also refer to this project as "who-dat over brick-string", because why not?!</sub>
 <br/>
 <hr/>
-<b>WARNING: this project is not actually implemented yet! Follow the [TODOs](#TODO) for progress and check back soon for runnable code!</b>
+<b>WARNING: this project is not actually implemented yet! Follow the <a href="#TODO">TODOs</a> for progress and check back soon for runnable code!</b>
 <hr/>
 </div>
 
