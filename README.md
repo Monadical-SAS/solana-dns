@@ -44,34 +44,28 @@ curl http://127.0.0.1:5380/dns/api/v1/name/google.com
 
 ## Configuration
 
-#### `--bind-dns`
+#### `--bind-dns=[host]:[port]`
 
-**Format:** `--bind-dns=[host]:[port]`  
+**Default:** `--bind-dns=127.0.0.1:5300`  
 **Example:** `--bind-dns=0.0.0.0:53`  
   
-**Default:** `--bind-dns=127.0.0.1:5300`  
-
 Specify the local [ip]:[port] to bind the DNS server to. It must be `0.0.0.0:53` to act
 as a standard public DNS server that can accept requests from any client (instead of just localhost).
 
 See the [instructions below](#start-the-server-on-port-53) if you want to bind to port `53` instead. 
 
-#### `--bind-http`
+#### `--bind-http=[host]:[port]`
 
-**Format:** `--bind-http=[host]:[port]`  
+**Default:** `--bind-http=off`  
 **Example:** `--bind-http=127.0.0.1:5380`  
   
-**Default:** `--bind-http=off`  
-
 Specify the local [ip]:[port] to bind the web UI server to. It must be `0.0.0.0:[port]` in 
 order to accept HTTP requests from any client (instead of just localhost).
 
-#### `--upstream=x.x.x.x,y.y.y.y`
+#### `--upstream=[host]:[port],[host2]:[port2],...`
 
-**Format:** `--upstream=[host]:[port],[host2]:[port2],...`  
+**Default:** `--bind-dns=1.1.1.1,8.8.8.8,208.67.222.222`  
 **Example:** `--bind-dns=208.67.222.222,dns.example.com:5353`  
-  
-**Default:** `--bind-dns=1.1.1.1,8.8.8.8,208.67.222.222`
 
 Specify which upstream DNS servers to send requests to when the query cannot be resolved via Solana DNS.
 
