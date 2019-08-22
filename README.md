@@ -137,10 +137,14 @@ order to accept HTTP requests from any client (instead of just localhost).
 
 #### `--upstream=[host]:[port],[host2]:[port2],...`
 
-**Default:** `--bind-dns=1.1.1.1,8.8.8.8,208.67.222.222`  
-**Example:** `--bind-dns=208.67.222.222,dns.example.com:5353`  
+**Default:** `--upstream=off`  
+**Example:** `--upstream=1.1.1.1,8.8.8.8,208.67.222.222,dns.example.com:5353`  
 
-Specify which upstream DNS servers to send requests to when the query cannot be resolved via Solana DNS.
+Specify which upstream DNS servers to send requests to when the query cannot be resolved via Solana DNS.  
+The default is `off`, meaning it will return "no result found" if the record is not in the Solana store.  
+  
+To make it a usable DNS server for all queries, and not just records stored in Solana, it's recommended
+to run with a few upstream servers capable of resolving normal internet-level DNS records.
 
 ---
 
