@@ -1,118 +1,133 @@
-[![Build Status](https://travis-ci.org/hbouvier/dns.png)](https://travis-ci.org/hbouvier/dns)
-[![dependency Status](https://david-dm.org/hbouvier/dns/status.png?theme=shields.io)](https://david-dm.org/hbouvier/dns#info=dependencies)
-[![devDependency Status](https://david-dm.org/hbouvier/dns/dev-status.png?theme=shields.io)](https://david-dm.org/hbouvier/dns#info=devDependencies)
-[![NPM version](https://badge.fury.io/js/dns.png)](http://badge.fury.io/js/dns)
+# Solana DNS
 
-DNS
-===
+A simple DNS server that uses the high-performance [Solana](https://solana.com/developers/) blockchain as the backing datastore (with an optional REST API + Web UI).
 
-A DNS Server with an Web UI and using Redis a configuration store. Read further
-for Docker instructions.
+(Loosely based on https://github.com/hbouvier/dns and https://github.com/solana-labs/example-messagefeed)
 
-## Installation
+## Quickstart
 
-	brew install redis
-	sudo npm install -g dns
+```bash
+git clone https://github.com/pirate/solana-dns
+cd solana-dns
+npm install
+npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
+```
 
-## Startup
+**To query the DNS server:  
+```bash
+dig @127.0.0.1 -p 5300 google.com
+```
 
-	/usr/local/opt/redis/bin/redis-server /usr/local/etc/redis.conf >& /tmp/redis.log &
-	sudo dns >& /tmp/dns.log &
+**To view the Web UI:**  
+Open http://127.0.0.1:5380
 
-## Web UI
+**To query the REST API:**
+```bash
+curl http://127.0.0.1:5380/dns/api/v1/name/google.com
+```
 
-	open http://localhost:8053
+## Configuration
 
-## REDIS CONFIGURATION
+#### `--bind-dns`
 
-    REDIS_PORT_6379_TCP_ADDR  (default: 127.0.0.1)
-    REDIS_PORT_6379_TCP_PORT  (default: 6379)
+**Format:** `--bind-dns=[host]:[port]`  
+**Example:** `--bind-dns=0.0.0.0:53`  
+  
+**Default:** `--bind-dns=127.0.0.1:5300`  
 
-## DNS CONFIGURATION
+**To run the server on port 53 (the standard DNS port):**
 
-    DNSINTERFACE (default: 0.0.0.0)
-    DNSPORT      (default: 53 <- require root privilege to run)
-    DNSZONE      (default: local.dev)
-    DNSTTL       (default: 3600 <- one hour)
-    DNSPREFIX    (default: "dns:" <- key prefix in redis)
-    DNSPRIMARY   (default: 8.8.8.8)
-    DNSSECONDARY (default: 8.8.4.4)
-    DNSTIMEOUT   (default: 1000 <- 1 second)
-
-## REST ROUTES
-
-	* GET /dns/api/v1/name
-
-		List all host to ip address mapping
-
-	* GET /dns/api/v1/name/{host}
-
-		Return the ip address of only that host
-
-	* PUT /dns/api/v1/name/{host}
-
-		Create or Modify the ip address for "host"
-
-	* DELETE /dns/api/v1/name/{host}
-
-		Remove the host from the DNS
-
-	* DELETE /dns/api/v1/name?force=true
-
-		Remove all host from the DNS
-
-	* GET /dns/api/v1/zone
-
-		Return the DNS ZONE
-
-	* GET /dns/api/v1/status
-
-		Return the DNS status
-
-
-## To create or modify a host in the DNS configuration
-
-    Single host
-	curl -X PUT -H 'Content-Type: application/json' -d '{"ipv4":["192.168.1.1"], "ipv6":["2605:f8b0:4006:802:0:0:0:1010"]}' http://localhost:8053/dns/api/v1/name/database.domain.com
-	
-    Multiple hosts
-        curl -X PUT -H 'Content-Type: application/json' -d '{"ipv4":["192.168.1.1","192.168.1.2"], "ipv6":["2605:f8b0:4006:802:0:0:0:1010","2605:f8b0:4006:802:0:0:0:1011"]}' http://localhost:8053/dns/api/v1/name/database.domain.com
-
-## To query the address of a host
-
-	curl http://localhost:8053/dns/api/v1/name/database.domain.com
-	or
-	dig @127.0.0.1 database.domain.com
-	or
-	dig @127.0.0.1 database.domain.com AAAA
-
-## To remove a host from the registry
-
-	curl -X DELETE http://localhost:8053/dns/api/v1/name/database.domain.com
-
-# UPGRADING from 0.0.9 or 0.1.0 to a version greater than 0.1.0
-
-You will need to clear your redis configuration before running the new version.
-
-    curl -X DELETE http://localhost:8053/dns/api/v1/name\?force\=true
-    or
-    for key in `echo 'KEYS dns*' | redis-cli | awk '{print $1}'` ; do echo DEL $key ; done | redis-cli
-
-# Running in Docker
-
-This DNS server is able to run as a docker container. To build the container,
-run a command similar to the following (`htdns` is a shorthand for HTTP/DNS):
-
-    docker build -t efrecon/htdns .
+1. Check to see if a DNS server is already running on `127.0.0.1:53`
+    ```bash
+    sudo nc -ulp 53 || echo "port already in use"
+    ```
+2. On Ubuntu: you may have to stop `systemd-resolvd` (the system DNS resolver that binds to `:53` by default)
+    ```bash
+    # to stop it immediately, run:
+    systemctl stop systemd-resolvd
     
-To run, once you have your image, issue something similar to the following command:
+    # then, if you want to prevent it from starting the next time you reboot, run:
+    systemctl disable systemd-resolvd
 
-    docker run -it --rm -p 8053:8053 -p 53:53 --name=dns -e DNSTTL=1800 efrecon/htdns --level=debug
+    # make sure /ets/resolv.conf exists and has at least one non-local upstream DNS server
+    echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+    ```
+2. Once the port is confirmed open, you can bind Solana-DNS to `:53`
+    ```bash
+    # listening on ports below 1000 requires sudo on most systems
+
+    # to run a server that responds to DNS queries from localhost only, run:
+    sudo npm run server --bind-dns=127.0.0.1:53
+
+    # to run a server that responds to DNS queries from your local network only, run:
+    sudo npm run server --bind-dns=x.x.x.x:53  # replace x.x.x.x with your LAN IP
+
+    # to run a public server that responds to DNS queries from any location, run:
+    sudo npm run server --bind-dns=0.0.0.0:53
+    ```
+3. Optional: tell your system to use the local DNS server for all queries:
     
-Note how the command above maps port `53`, which requires root privileges and
-also how it passes further the `DNSTTL` environment variable (one of the
-optional variables documented above) and passes command-line arguments to the
-DNS server (in this case, putting it in `debug` mode). The implementation
-currently runs `redis` as a daemon before starting up the node-based DNS server.
-This is for the sake of simplicity, but breaks the principle that there should
-only be one container running in a container.
+    ```bash
+    # edit /etc/resolv.conf and put this line *above* any other "nameserver x.x.x.x" lines
+    nameserver 127.0.0.1
+    ```
+    On macOS you can set this under `System Preferences > Networking > Advanced > DNS > +`.
+
+#### `--bind-http`
+
+**Format:** `--bind-http=[host]:[port]`  
+**Example:** `--bind-http=127.0.0.1:5380`  
+  
+**Default:** `--bind-http=off`  
+
+Specify the local [ip]:[port] to bind the web UI server to. It must be `0.0.0.0:[port]` in 
+order to accept HTTP requests from any client and not just localhost.
+
+#### `--upstream=x.x.x.x,y.y.y.y`
+
+**Format:** `--upstream=[host]:[port],[host2]:[port2],...`  
+**Example:** `--bind-dns=208.67.222.222,dns.example.com:5353`  
+  
+**Default:** `--bind-dns=1.1.1.1,8.8.8.8,208.67.222.222`
+
+Specify which upstream DNS servers to send requests to when the query cannot be resolved via Solana DNS.
+
+
+
+## REST API
+
+* GET `/api/dns/A`
+
+    List all host to IP address mappings that the local server knows about.
+
+* GET `/api/dns/A/{domain}`
+
+    Return the IP address for the given given domain.
+
+* PUT `/api/dns/A/{domain}`
+
+    Create or Modify the IP address for the given domain.
+
+* DELETE `/api/dns/A/{domain}`
+
+    Forget the IP address record for the given domain.
+
+* DELETE `/api/dns/A/?force=true`
+
+    Forget all records.
+
+* GET `/api/dns/zone`
+
+    Return the DNS ZONE.
+
+* GET `/api/dns/status`
+
+    Return the DNS server status.
+
+## TODO
+
+- Add more examples for the REST API
+- Add support for more DNS record types
+- Add support for adding/removing/modifying DNS records via CLI
+- Add config file / environment variable support for configuration
+- Add config file / environment variable support for hardcoded DNS records
