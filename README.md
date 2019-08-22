@@ -53,6 +53,100 @@
    Given all the properties above, having DNS as the authenticated source-of-truth for DNS is not a bad idea (whether to augment DNSSEC or replace it entirely).  
    Caching layers that improve backwards-compatibility and speed can always be built on top, but everything gets easier when the underlying store is fast, immutable, and authenticated.  
 
+### How does DNS work normally?
+
+**This is a simplified example of a standard DNS setup process without Solana DNS or DNSSEC:**
+
+1. You register a domain `example.com` on the Namecheap Registrar
+
+2. You set your authoritative nameservers in the NameCheap control panel to `ns1.digitalocean.com`
+
+3. NameCheap pushes the change to the [root dns servers](https://www.iana.org/domains/root/servers) for your TLD, 
+in this case the root servers for `.com` (this is handled outside of the DNS system, 
+usually using a protocol called the [Extensible Provisioning Protocol (EPP)](http://www.ietf.org/iesg/implementation/report-rfc4930-4934.txt))
+
+4. The root DNS servers update their NS records to point to your new authoritative name server `ns1.digitalocean.com`
+
+5. In your DigitalOcean account you configure the domain's DNS and set the `example.com` `A` record to `123.123.123.123`
+
+**Then a user comes along and makes a DNS request for your domain `example.com` using their configured DNS upstream server `1.1.1.1`:**
+
+1. User's device sends a DNS query to `1.1.1.1:53/udp` asking for the `example.com` `A` record (in plain text, unencrypted)
+
+2. Assuming `1.1.1.1` doesn't have the record cached, it asks the root domain servers "what nameserver can I use to look up this record?"
+
+3. The `.com` root domain server responds with `ns1.digitalocean.com`
+
+4. `1.1.1.1` then sends a query to `ns1.digitalocean.com` asking for the `example.com` `A` record
+
+5. `ns1.digitalocean.com` responds with `123.123.123.123` to `1.1.1.1`
+
+6. `1.1.1.1` caches this record and passes along the response back to the user
+
+7. The user receives back an unencrypted, unsigned, plaintext response containing `123.123.123.123`, 
+stating that `1.1.1.1` was the server that answered the request
+
+**Unfortunately this system has a number of major security flaws! Can you spot some of them?**
+
+- there are many layers of *implicit trust* with no authentication or verification mechanism. You have to trust that
+  + `ns1.digitalocean.com`,
+  + `1.1.1.1`,
+  + the `.com` root servers, 
+  + and every middle-box between you and them 
+  are **all** non-malicious, free of bugs, and are otherwise functioning perfectly.
+
+- the requests and responses are entirely in plaintext, making it trivial for middle-boxes to intercept, record, and modify query content
+- the responses are unsigned and unauthenticated, meaning the user has no idea if the you were the one who created
+  that DNS record, or if a malicious/buggy/hacked middle-box just decided to return a different value randomly
+  With no signature or public key to verify against, there's no way to know whether the response value has been tampered with.
+
+**Enter DNSSEC & DNS-over-HTTPS... two separate technologies aiming to solve two of the biggest issues.**
+
+- DNSSEC partially fixes the authentication issue by allowing people to pin a public key along with their authoritative
+name servers at the registrar level (NameCheap) / root DNS level (`.com` root servers). The user can then use the corresponding
+private key (that only they have access to), to sign all records added to their nameserver (`ns1.digitalocean.com`).
+DNSSEC-compatible clients can then receive signed DNS query responses, and can verify the signatures are valid against the public
+key published at the root level.
+
+- DNS-over-HTTPS (DOH) doesn't add any kind of authentication to the individual records, but it does allow users to form a direct, 
+encrypted connection to their upstream DNS servers, and authenticate the server's identity using their public SSL certificate.
+This makes one link in the chain trusted, but it does nothing for the links upstream from the user's DNS server unless they're also using DNS over HTTPS
+or an equivalent encrypted transit method (which luckily many major providers do use).
+
+**So what does Solana add to the equation?**
+
+It removes the root DNS servers from the trust equation (e.g. the `.com` TLD servers).  Remember that they have ultimate control over all record authentication because
+they could choose to ignore or maliciously change the DNSSEC public key that you published via the registrar.  This implicit trust can be removed
+in Solana DNS because the public key is the user's wallet public key, which is intrinsically tied to their identity on the platform.
+Solana has no power to change the public key because the chain forms an immutable record, and only later statements signed with a revocation key
+are recognized by clients as authorized to change the public key in control of a given domain.
+
+The exact mechanics of how domain ownership verification will be carried out, or whether it's even necessar with Solana DNS 
+have yet to be fully designed.
+
+However, we're confident that given the power of an immutable, globally sychronized database, with key-based identity baked in, 
+many of the distributed-systems and authentication problems that have plagued DNS in the past become drastically easier to solve.
+
+This isn't just a case of "slap a blockchain on it and hope it gets better", this is a true novel distributed database-style
+solution that hasn't been feasible with traditional blockchains. Running usable DNS on blockchains is now feasible with the advent of 
+fast proof-of-history chains, because it enables updates to happen within DNS TTL windows like 30sec, which are well below
+the 10min verification time that a chain like Bitcoin would require. Because changes can also be synchronously applied 
+to appear to everyone across the world at the same time, we can also lose the "eventual consistency"
+and propagation delay issues that plagued standard DNS systems in the past.
+
+Solana DNS can also retain the nice distributed properties of past DNS systems. 
+Because all records are signed all the way up to the root using the domain owner's public key, any node
+can serve up records without users having to implicitly trust them.  The query results
+will always arrive signed with a key that can be verified to ensure malicous middle-boxes cant get away with modifying records.
+
+**Potential problems?**
+
+- Solana may be fast, but the RPC communication with the Solana chain may be significantly slower than DNS over UDP
+- If RPC communication becomes the bottleneck, we end up having to implement time-synchronized caching servers with fairly 
+complex validation/stacking mechanics to penalize drift and inadherence to signed record TTL expiry times
+- It may not be necessary to replace DNSSEC entirely, it's possible to just sign the same root public key used on the TLD
+in Solana, and use DNSSEC from there on down the chain (checking against the Solana root key instead of the implicitly trusted root-server-published key)
+
 ---
 
 ## Quickstart
