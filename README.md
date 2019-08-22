@@ -140,7 +140,7 @@ The data flows through the stack like this:
   
 - ⬇️🌐⬆️ **Solana Network API**  
     *Calls out via Solana w3 JSON RPC API to the Solana network.*  
-    `./network/api.js` (runs locally, calls `https://beta.testnet.solana.com:8443` Solana Network endpoint)  
+    `./network/api.js` (runs locally, calls configured Solana Network's endpoint, e.g. `https://beta.testnet.solana.com:8443`)  
   
 - ⬇️⛓⬆️ **Solana BPF Rust Program On-Chain**  
     *The uploaded BPF Rust program spends your account tokens to run on the Solana network and perform reads/writes of stored data.*  
@@ -163,16 +163,17 @@ The code execution flow looks like this:
   
 3. BPF Rust program gets uploaded to the Solana chain under new account  
    `npm run upload` -> `./network/upload.js` -> `./network/kvstore.rs`  
-   BPF Loader runs to push program to chain via Solana-provided network endpoint `https://beta.testnet.solana.com:8443` 
+   BPF Loader runs to push program to chain via configured Solana network's endpoint, e.g. `https://beta.testnet.solana.com:8443` 
   
-4. REST API / DNS queries get handled by local node server
+4. REST API / DNS queries get handled by local node server  
    `npm run server` -> `./server/server.js` -> `./server/http-server.js`,`./server/dns-server.js`
 
 5. Local node server calls out to Solana network via Solana Web3 JSON RPC API  
    `./network/api.js` -> `https://beta.testnet.solana.com:8443`
   
 6. BPF Rust program runs on Solana network to handle record read/write requests  
-   `./network/kvstore.rs` -> `<solana internal API>`
+   `./network/kvstore.rs` -> `<solana internal API>`  
+   (Spends account tokens in exchange for the CPU time)
   
 7. Solana blockchain handles storage requests  
    `<solana internal API>` -> `<solana blob storage>`
