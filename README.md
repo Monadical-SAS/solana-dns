@@ -51,7 +51,7 @@
 
 ## Quickstart
 
-**Install the language dependencies:**
+**1. Install the language dependencies:**
 
  - Rust https://www.rust-lang.org/tools/install  
    `curl https://sh.rustup.rs -sSf | sh` / `apt install rustup` / `brew install rustup`
@@ -62,14 +62,14 @@
  - Docker https://docs.docker.com/install/  
     Required because parts of the Solana build process run in Docker.
 
-**Clone the repo & install the project dependencies:**
+**2. Clone the repo & install the project dependencies:**
 ```bash
 git clone https://github.com/pirate/solana-dns
 cd solana-dns
 npm install
 ```
 
-**Create a Solana account to access the network:**
+**3. Create a Solana account to access the network:**
 
 Running code on Solana requires an "account"/wallet with tokens that will be used to run the on-chain part of the DNS server.  
 (Similar to how running Ethereum DAPPs on-chain requires spending some tokens in exchange for CPU time)  
@@ -94,32 +94,34 @@ Choose which Solana network you want to store your records in:
    # Not available yet, check https://solana.com/tds/ for updates
    ```
 
-**Upload the on-chain side of the program using your account:**  
-Build and upload the Rust BPF program that runs on the Solana net to handle requests from your local solana-dns server.
+**4. Upload the on-chain side of the program using your account:**  
+Build and upload the Rust BPF program that runs on the Solana net to handle requests from your local `solana-dns` server.
 ```
 npm run build:bpf-rust
 npm run upload --credentials=./secrets.conf
 ```
 
-**Run the solana-dns server on localhost:**
+**5. Run the solana-dns server on localhost:**
 ```bash
 npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
 
-**To query the DNS server:**
-```bash
-dig @127.0.0.1 -p 5300 google.com
-```
+**✅ You're done! Your `solana-dns` is running now.**
 
-**To view the Web UI:**
-```
-Open http://127.0.0.1:5380
-```
-
-**To query the REST API:**
-```bash
-curl http://127.0.0.1:5380/dns/api/v1/name/google.com
-```
+ - **To query it via DNS:**
+    ```bash
+    dig @127.0.0.1 -p 5300 google.com
+    ```
+  
+ - **To query it via the REST API:**
+    ```bash
+    curl http://127.0.0.1:5380/dns/api/v1/name/google.com
+    ```
+    
+ - **To view the Web UI:**
+    ```
+    Open http://127.0.0.1:5380
+    ```
 
 ---
 
