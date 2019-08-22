@@ -75,20 +75,20 @@ Running code on Solana requires an "account"/wallet with tokens that will be use
 (Similar to how running Ethereum DAPPs on-chain requires spending some tokens in exchange for CPU time)  
 Choose which Solana network you want to store your records in:
 
-- Using the public beta testnet (easiest, all records will be public, **free**):  
+- **Using the public beta testnet** (easiest, all records publicly accessible, **free**):  
     You automatically get free air-dropped tokens to run code on the beta net. 
     ```bash
-    npm run signup --net=beta --save-credentials=./secrets.conf
+    npm run signup --net=beta --save-credentials=./secrets.conf  # or use --net=edge
     ```
 
-- Using a localnet (harder, but no data leaves your local machine, **free**):  
+- **Using a local testnet** (harder, no data accessible off your local machine, **free**):  
    You get infinite free tokens on your local test net because you own it!
    ```bash
    npm run localnet:update && npm run localnet:up
    npm run signup --net=localnet --save-credentials=./secrets.conf
    ```
 
-- Using the real mainnet (hardest, all records will be public, **real $ needed**):  
+- **Using the public mainnet** (hardest, all records publicly accessible, **real $ needed**):  
    You have to purchase SOL tokens via an exchange to run code on the main net.
    ```bash
    # Not available yet, check https://solana.com/tds/ for updates
