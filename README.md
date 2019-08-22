@@ -13,7 +13,7 @@ npm install
 npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
 
-**To query the DNS server:  
+**To query the DNS server:**
 ```bash
 dig @127.0.0.1 -p 5300 google.com
 ```
