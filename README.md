@@ -65,7 +65,7 @@ The data flows through the stack like this:
 
 - ⬇️👩‍💻📃 **User**  
     Makes requests via DNS or HTTP  
-    Web UI `./client/web.js` / DNS API / HTTP API  
+    `./ui/index.js` (runs in-browser) / direct request via DNS or REST API
  
 - ⬇️🖥⬆️ **Local Node Server**  
     Main JavaScript logic handles CLI commands, DNS queries, and HTTP requests  
@@ -73,15 +73,15 @@ The data flows through the stack like this:
   
 - ⬇️🌐⬆️ **Solana Network API**  
     Calls out via Solana w3 JSON RPC API to the Solana network  
-    `network/api.js` (runs locally, calls `https://beta.testnet.solana.com:8443` Solana Network endpoint)  
+    `./network/api.js` (runs locally, calls `https://beta.testnet.solana.com:8443` Solana Network endpoint)  
   
 - ⬇️⛓⬆️ **Solana Network Program**  
     BPF Rust program on Solana network handles reads/writes of stored data  
-    `network/kvstore.rs` (gets uploaded and runs on-chain)  
+    `./network/kvstore.rs` (gets uploaded and runs on-chain)  
   
 - ⬇️➡️⬆️ **Solana Block Storage**  
-Solana provides the data storage layer to hold the records  
-`<handled by Solana>` (text blobs located on-chain)  
+    Solana provides the data storage layer to hold the records  
+    `<handled by Solana>` (text blobs located on-chain)  
 
 ### Execution Flow
 
