@@ -1,68 +1,28 @@
 {
-  "author": "Henri Bouvier",
-  "name": "dns",
-  "description": "A DNS Server with an Web UI and using Redis a configuration store",
-  "version": "0.1.5",
+  "author": "Nick Sweeting",
+  "name": "solana-dns",
+  "description": "A DNS server using the high-speed Solana blockchain as the backing datastore.",
+  "version": "0.0.1",
   "keywords": [
-    "dns"
+    "dns",
+    "dns-server",
+    "solana",
+    "decentralized",
+    "blockchain",
+    "proof-of-history",
+    "dapp",
+    "rust"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hbouvier/dns.git"
+    "url": "https://github.com/Monadical-SAS/solana-dns.git"
   },
   "dependencies": {
     "hbo-dnsd": "0.9.8",
-    "native-dns": "0.6.1",
-    "node-options": "0.0.6",
-    "redis": "0.12.1",
-    "tomahawk": "0.1.5",
-    "winston": "0.7.3"
+    "native-dns": "0.6.1"
   },
   "engines": {
-    "node": ">= 0.10.0 < 0.11.0"
+    "node": ">= 0.10.0"
   },
-  "main": "./lib/dns.js",
-  "bin": {
-    "dns": "./bin/dns"
-  },
-  "scripts": {
-    "start": "bin/dns"
-  },
-  "configuration": {
-    "name": "DNS",
-    "level": "info",
-    "www": "public",
-    "config": "config.json",
-    "context": "/",
-    "port": 8053,
-    "ip": "0.0.0.0",
-    "routes": [],
-    "cgi": [],
-    "headers": [],
-    "socket": {
-      "level": "error",
-      "transports": [
-        "websocket",
-        "flashsocket",
-        "htmlfile",
-        "xhr-polling",
-        "jsonp-polling"
-      ],
-      "pollingduration": 10
-    },
-    "dns": {
-      "host": "0.0.0.0",
-      "port": 53,
-      "zone": "local.dev",
-      "ttl": 3600,
-      "prefix": "dns:",
-      "primary": "8.8.8.8",
-      "secondary": "8.8.4.4",
-      "timeout": 1000
-    },
-    "redis": {
-      "host": "127.0.0.1",
-      "port": 6379
-    }
-  }
+  "main": "./server/server.js"
 }
