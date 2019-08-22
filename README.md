@@ -4,7 +4,7 @@
 <br/>
 A simple DNS server that uses the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> as the backing datastore (with an optional REST API + Web UI).
 <br/><br/>
-<sup>(Loosely based on <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
+<sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
 </div>
 
 ---
