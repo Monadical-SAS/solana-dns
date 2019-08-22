@@ -62,7 +62,7 @@ cd solana-dns
 
 dig @127.0.0.1 -p 5300 google.com
 ```
-If you prefer not to install packages via helper script or if you encounter any issues, follow the Manual Setup guide below.
+If don't like helper scripts installing packages and want to understand/fine-tune the setup, or if you encounter any issues, follow the [Manual Setup](#Manual-Setup) steps below.
 
 ## Manual Setup
 
