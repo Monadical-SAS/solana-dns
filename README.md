@@ -13,11 +13,16 @@
 <img src="https://img.shields.io/badge/License-MIT-blue">
 <img src="https://img.shields.io/badge/Status-Proof_of_Concept-red">
 <img src="https://img.shields.io/badge/Powered_by-Solana-02FEAD">
+<hr/>
+<a href="#Why-Solana-">Why Solana?</a> | 
+<a href="#Quickstart">Quickstart</a> | 
+<a href="#Architecture">Architecture</a> | 
+<a href="#Configuration">Configuration</a> | 
+<a href="#Usage">Usage</a>
+<br/>
+<b>WARNING: this project is not actually implemented yet, it's just a README! Check back soon for runnable code!</b>
+<hr/>
 </div>
-
----
-
-**WARNING: this project is not actually implemented yet, it's just a README! Check back soon for runnable code!**
 
 ### Why Solana?
 
