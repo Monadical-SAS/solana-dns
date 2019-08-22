@@ -17,7 +17,16 @@
 
 ## Quickstart
 
-**Clone the repo & install the dependencies:**
+**Install the language dependencies:**
+
+ - Rust https://www.rust-lang.org/tools/install
+   `curl https://sh.rustup.rs -sSf | sh` / `apt install rustup` / `brew install rustup`
+ - JavasScript https://nodejs.org/en/download/package-manager/
+    `apt install node` / `brew install node`
+ - Docker https://docs.docker.com/install/
+    Required because parts of the Solana build process run in Docker.
+
+**Clone the repo & install the project dependencies:**
 ```bash
 git clone https://github.com/pirate/solana-dns
 cd solana-dns
