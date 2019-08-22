@@ -470,7 +470,7 @@ TODO: document Web UI features.
 - [ ] Implement `./bin/signup` (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/util/new-system-account-with-airdrop.js)
 - [ ] Implement `./bin/upload` to upload the compiled Rust BPF program on-chain (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/server/message-feed.js#L85)
 - [ ] Implement `./bin/build` to compile the Rust BPF program (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/do.sh)
-- [ ] Implement the Rust BPF kvstore program in a way that can re-used separately for other projects (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/src/lib.rs)
+- [ ] Implement `./network/kvstore.rs` the Rust BPF kvstore program in a way that can re-used separately for other projects (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/src/lib.rs)
 - [ ] Implement `./network/api.js` to talk to the Rust BPF program running on the Solana network (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/programs/message-feed.js)
 - [ ] Implement `./bin/server` -> `./server/server.js` Solana DNS server to call out to API and get/set DNS key:value records (based on https://github.com/hbouvier/dns/blob/master/lib/dns.js)
 - [ ] Implement `./server/dns-server.js` to bind to a UDP port and serve DNS queries
