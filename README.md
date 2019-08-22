@@ -107,19 +107,19 @@ npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1
 ```
   
   
-**6. You're done! Your `solana-dns` is running now. ✅**
+**6. You're done! Your `solana-dns` server should be running now. ✅**
 
-  **To query it via DNS:**
+ - **To query it via DNS:**
     ```bash
     dig @127.0.0.1 -p 5300 google.com
     ```
   
-  **To query it via the REST API:**
+ - **To query it via the REST API:**
     ```bash
     curl http://127.0.0.1:5380/dns/api/v1/name/google.com
     ```
     
-  **To view the Web UI:**  
+ - **To view the Web UI:**  
     Open http://127.0.0.1:5380
 
 ---
