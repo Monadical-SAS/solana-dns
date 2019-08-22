@@ -188,7 +188,7 @@ The code execution flow looks like this:
 Config options can be passed to Solana DNS in a few different ways:
 
 1. [Configuration file](#Configuration-File) passed via `--config=path/to/file.env`
-2. [Environment varaibles](#Environemnt-Variables) (which override any existing options in the config file)
+2. [Environment variables](#Environment-Variables) (which override any existing options in the config file)
 3. [CLI parameters](#CLI-Parameters) (which override both env variables and config file params)
 
 ### CLI Parameters
