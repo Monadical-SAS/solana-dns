@@ -78,14 +78,14 @@ Choose which Solana network you want to store your records in:
 - **Using the public beta testnet** (easiest, all records publicly accessible, **free**):  
     You automatically get free air-dropped tokens to run code on the beta net. 
     ```bash
-    npm run signup --net=beta --save-credentials=./secrets.conf  # or use --net=edge
+    npm run signup --net=beta --save-config=./secrets.env  # or use --net=edge
     ```
 
 - **Using a local testnet** (harder, no data accessible off your local machine, **free**):  
    You get infinite free tokens on your local test net because you own it!
    ```bash
    npm run localnet:update && npm run localnet:up
-   npm run signup --net=localnet --save-credentials=./secrets.conf
+   npm run signup --net=localnet --save-config=./secrets.env
    ```
 
 - **Using the public mainnet** (hardest, all records publicly accessible, **real $ needed**):  
@@ -98,7 +98,7 @@ Choose which Solana network you want to store your records in:
 Build and upload the Rust BPF program that runs on the Solana net to handle requests from your local `solana-dns` server.
 ```
 npm run build:bpf-rust
-npm run upload --credentials=./secrets.conf
+npm run upload --config=./secrets.env
 ```
 
 **5. Run the solana-dns server on localhost:**  
@@ -184,6 +184,29 @@ The code execution flow looks like this:
 ---
 
 ## Configuration
+
+#### `--config=path/to/file.conf`
+
+**Default:** `--config=./secrets.env`  
+**Example:** `--config=/etc/solana/credentials.conf`  
+  
+Specify the path to the file containing your network config and account credentials used to connect to a Solana network.
+  
+This file is generated during setup by running:
+```bash
+npm signup --net=beta --save-config=./secrets.env
+```
+  
+The config file is in `dotenv` format and should look like this:
+```bash
+SOLANA_NETWORK_NAME=beta
+SOLANA_NETWORL_ENDPOINT=https://beta.testnet.solana.com:8443
+
+SOLANA_USER_ID=[unique user id here]
+SOLANA_USER_PUBLIC_KEY=[public key here]
+SOLANA_USER_PRIVATE_KEY=[private key here]
+SOLANA_USER_AUTH_GOOGLE=[optional Google email address here]
+```
 
 #### `--bind-dns=[host]:[port]`
 
