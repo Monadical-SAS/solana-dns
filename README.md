@@ -128,7 +128,12 @@ with any existing local DNS server. To bind to the the standard DNS port (UDP `5
     # edit /etc/resolv.conf and put this line *above* any other "nameserver x.x.x.x" lines
     nameserver 127.0.0.1
     ```
-    On macOS you can set this under `System Preferences > Networking > Advanced > DNS > +`.
+    On macOS you can set this under:
+    ```
+    System Preferences > Network > Advanced > DNS > [+]
+    127.0.0.1
+    (drag it to the top of the list if there are other entries)
+    ```
 
 #### Add/Modify/Delete Records
 
