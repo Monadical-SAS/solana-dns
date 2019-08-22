@@ -35,7 +35,7 @@
   
 - [Inherently authenticated.](https://github.com/solana-labs/example-messagefeed#new-user-sign-up)  
   All records are signed with your wallet private key, and can be verified against your public address.  
-  (Optional [linking to a Google account](https://github.com/solana-labs/example-messagefeed#new-user-sign-up) can authenticate your account.)
+  (But remember, authentication is meaningless without a way to *identify* the owner of a key, Solana can [link accounts via Google Auth](https://github.com/solana-labs/example-messagefeed#new-user-sign-up) to help with this.)
   
 - [Inherently immutable.](https://solana-labs.github.io/book/#what-is-a-solana-cluster)  
   Past history can never be modified, whether by accident or maliciously.
