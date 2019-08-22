@@ -2,6 +2,8 @@
 <img src="https://i.imgur.com/mOGmEPW.png" alt="Logo" width="400px"/>
 <h1>Solana DNS</h1>
 <br/>
+<sub>a.k.a "who-dat over brick-string"</sub>
+<br/>
 <b>A simple DNS server using the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> to store signed records.</b>
 <br/>
 (Implemented in JavaScript and Solana BPF Rust, w/ an optional REST API + Web UI)
@@ -20,8 +22,6 @@
 <img src="https://img.shields.io/badge/Powered_by-Solana-02FEAD"/>
 <br/><br/>
 <sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
-<br/>
-<sub>You can also refer to this project as "who-dat over brick-string", because why not?!</sub>
 <br/>
 <hr/>
 <b>WARNING: this project is not actually implemented yet! Follow the <a href="#TODO">TODOs</a> for progress and check back soon for runnable code!</b>
