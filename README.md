@@ -84,13 +84,13 @@ If you don't like helper scripts installing packages and want to understand/fine
 **1. Install the language dependencies:**
 
  - Rust https://www.rust-lang.org/tools/install  
-   `curl https://sh.rustup.rs -sSf | sh` / `apt install rustup` / `brew install rustup`
+   `curl https://sh.rustup.rs -sSf | sh` / `apt install rustup; rustup-init` / `brew install rustup; rustup-init`
   
  - JavasScript https://nodejs.org/en/download/package-manager/  
-    `apt install node` / `brew install node`
+    `apt install node; npm -g i npm` / `brew install node; npm -g i npm`
   
  - Docker https://docs.docker.com/install/  
-    Required because parts of the Solana build process run in Docker.
+    Required because the Solana Rust BPF builder runs in Docker for better repeatability.
 
 **2. Clone the repo & install the project dependencies:**
 ```bash
