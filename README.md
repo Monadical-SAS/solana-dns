@@ -22,7 +22,7 @@
 <img src="https://img.shields.io/badge/Status-Proof_of_Concept-red"/>
 <img src="https://img.shields.io/badge/Powered_by-Solana-02FEAD"/>
 <br/><br/>
-<sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
+<sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>, but not affiliated with either project officially)</sup>
 <br/>
 <hr/>
 <b>WARNING: this project is not actually implemented yet! Follow the <a href="#TODO">TODOs</a> for progress and check back soon for runnable code!</b>
