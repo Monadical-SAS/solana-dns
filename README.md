@@ -440,8 +440,24 @@ TODO: document Web UI features.
 
 ## TODO
 
-- Add more examples for the REST API
-- Add support for more DNS record types
-- Add support for adding/removing/modifying DNS records via CLI
-- Add config file / environment variable support for configuration
-- Add config file / environment variable support for hardcoded DNS records
+#### Core Implementation
+
+- [ ] Pull in config loading and CLI env setup boilerplate from https://github.com/pirate/bash-utils
+- [ ] Implement `./bin/signup` (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/util/new-system-account-with-airdrop.js)
+- [ ] Implement `./bin/upload` to upload the compiled Rust BPF program on-chain (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/server/message-feed.js#L85)
+- [ ] Implement `./bin/build` to compile the Rust BPF program (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/do.sh)
+- [ ] Implement the Rust BPF kvstore program (in a way that can re-used separately for other projects (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/src/lib.rs)
+- [ ] Implement `./network/api.js` to talk to the Rust BPF program running on the Solana network (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/programs/message-feed.js)
+- [ ] Implement `./bin/server` -> `./server/server.js` Solana DNS server to call out to API and get/set DNS key:value records (based on https://github.com/hbouvier/dns/blob/master/lib/dns.js)
+- [ ] Implement `./server/dns-server.js` to bind to a UDP port and serve DNS queries
+
+
+#### Lower Priority
+
+- [ ] Add support for more DNS record types besides `A` records (e.g. `CNAME`, `TXT`, etc.)
+- [ ] Implement `./server/http-server.js` to bind to a TCP port and serve HTTP Web UI and REST API
+- [ ] Implement `./server/dns-client.js` to fetch records from upstream servers when not found on Solana
+- [ ] Add support for adding/removing/modifying DNS records via CLI
+- [ ] Add config file / environment variable support for hardcoded DNS records
+- [ ] Add support for DNS-over-HTTPS API & JSON API
+- [ ] Finish documentation for the Web UI and REST, DNS-over-HTTP, and JSON APIs
