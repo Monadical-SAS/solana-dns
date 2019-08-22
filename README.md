@@ -47,7 +47,7 @@
   The network leader can theoretically handle **710,000 TPS**, and this library additionally caches records locally up to the signed TTL.  
 
 - [It's cool as hell.](https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8)  
-  Solana ain't your average blockchain, it pulls all this off with **[no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/)**.
+  Solana ain't your average blockchain, it pulls all this off with **[no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/)**.  See the [Solana Architecture](#Solana-Architecture) section for more info.
 
 ---
 
@@ -63,7 +63,7 @@ cd solana-dns
 
 dig @127.0.0.1 -p 5300 google.com
 ```
-If don't like helper scripts installing packages and want to understand/fine-tune the setup, or if you encounter any issues, follow the [Manual Setup](#Manual-Setup) steps below.
+If you don't like helper scripts installing packages and want to understand/fine-tune the setup, or if you encounter any issues, follow the [Manual Setup](#Manual-Setup) steps below.
 
 ---
 
