@@ -185,28 +185,22 @@ The code execution flow looks like this:
 
 ## Configuration
 
+Config options can be passed to Solana DNS in a few different ways:
+
+1. [Configuration file](#Configuration-File) passed via `--config=path/to/file.env`
+2. [Environment varaibles](#Environemnt-Variables) (which override any existing options in the config file)
+3. [CLI parameters](#CLI-Parameters) (which override both env variables and config file params)
+
+### CLI Parameters
+
 #### `--config=path/to/file.conf`
 
 **Default:** `--config=./secrets.env`  
 **Example:** `--config=/etc/solana/credentials.conf`  
   
 Specify the path to the file containing your network config and account credentials used to connect to a Solana network.
-  
-This file is generated during setup by running:
-```bash
-npm signup --net=beta --save-config=./secrets.env
-```
-  
-The config file is in `dotenv` format and should look like this:
-```bash
-SOLANA_NETWORK_NAME=beta
-SOLANA_NETWORL_ENDPOINT=https://beta.testnet.solana.com:8443
 
-SOLANA_USER_ID=[unique user id here]
-SOLANA_USER_PUBLIC_KEY=[public key here]
-SOLANA_USER_PRIVATE_KEY=[private key here]
-SOLANA_USER_AUTH_GOOGLE=[optional Google email address here]
-```
+For more info on the config file and options available within, see the [Configuration File](#Configuration-File) section.
 
 #### `--bind-dns=[host]:[port]`
 
@@ -236,6 +230,42 @@ The default is `off`, meaning it will return "no result found" if the record is 
   
 To make it a usable DNS server for all queries, and not just records stored in Solana, it's recommended
 to run with a few upstream servers capable of resolving normal internet-level DNS records.
+
+### Configuration File
+
+When running the server, the path to the config file should be specified via the `--config=path/to/file.env` CLI param.
+
+The config file is initially generated during setup when running:
+```bash
+npm signup --net=beta --save-config=./secrets.env
+```
+It can also be modified after the initial signup to change the credentials or include some additional options.
+
+The config file must be in Docker/Bash compatible [`.env` format](https://docs.docker.com/compose/env-file/#syntax-rules), and can contain the following parameters:
+```bash
+SOLANA_NETWORK_NAME=beta
+SOLANA_NETWORL_ENDPOINT=https://beta.testnet.solana.com:8443
+
+SOLANA_USER_ID=[unique user id here]
+SOLANA_USER_PUBLIC_KEY=[public key here]
+SOLANA_USER_PRIVATE_KEY=[private key here]
+SOLANA_USER_AUTH_GOOGLE=[optional Google email address here]
+
+# Optionally specify additional DNS server config here
+# these options are equivalent to ther respective CLI params
+SOLANA_DNS_BIND_DNS=127.0.0.1:5300
+SOLANA_DNS_BIND_HTTP=127.0.0.1:5380
+SOLANA_DNS_UPSTREAM=1.1.1.1,8.8.8.8,208.67.222.222
+```
+
+### Environment Variables
+
+The options in the config file can also be passed as environment varaibles using the same format. e.g.:  
+```bash
+env SOLANA_DNS_BIND_DNS=127.0.0.1:5300 npm run server ...
+```
+
+(This works well to pass config when running inside a Docker container)
 
 ---
 
