@@ -121,12 +121,6 @@ in Solana DNS because the public key is the user's wallet public key, which is i
 Solana has no power to change the public key because the chain forms an immutable record, and only later statements signed with a revocation key
 are recognized by clients as authorized to change the public key in control of a given domain.
 
-The exact mechanics of how domain ownership verification will be carried out, or whether it's even necessary with Solana DNS 
-have yet to be fully designed.
-
-However, we're confident that given the power of an immutable, globally sychronized database, with key-based identity baked in, 
-many of the distributed-systems and authentication problems that have plagued DNS in the past become drastically easier to solve.
-
 This isn't just a case of "slap a blockchain on it and hope it gets better", this is a true novel distributed database-style
 solution that hasn't been feasible with traditional blockchains. Running usable DNS on blockchains is now feasible with the advent of 
 fast proof-of-history chains, because it enables updates to happen within DNS TTL windows like 30sec, which are well below
@@ -143,9 +137,17 @@ will always arrive signed with a key that can be verified to ensure malicous mid
 
 - Solana may be fast, but the RPC communication with the Solana chain may be significantly slower than DNS over UDP
 - If RPC communication becomes the bottleneck, we end up having to implement time-synchronized caching servers with fairly 
-complex validation/stacking mechanics to penalize drift and inadherence to signed record TTL expiry times
+complex validation/staking mechanics to penalize clock drift and inadherence to signed record TTL expiry times
 - It may not be necessary to replace DNSSEC entirely, it's possible to just sign the same root public key used on the TLD
 in Solana, and use DNSSEC from there on down the chain (checking against the Solana root key instead of the implicitly trusted root-server-published key)
+- The mechanics around domain ownership verification need to be figured out (or whether it's even necessary with Solana DNS)
+- The mechanics of pinning identities to keys needs to be figured out (whether via staking, 3rd party identity providers, or something else)
+- The mechanics of key issuing, rotating, and revocation need to be figured out (proper revocation is haaard, we dont want domains being lost forever to the ether because someone lost a private key)
+
+Given the power of an immutable, globally sychronized database, with key-based identity baked in, 
+many of the distributed-systems and authentication problems that have plagued DNS in the past become drastically easier to solve.
+Unfortunately, designing DNS system to seamlessly augment or entirely replace existing DNS authentication mechanisms is incredibly complex.
+Though our ambitions are big, this project will likely have to make some decisions early on to narrow the scope and pick a few core features to focus on as a proof-of-concept.
 
 ---
 
