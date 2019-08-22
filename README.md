@@ -42,10 +42,10 @@
   A globally-distributed network of nodes serve as validators, data replicas, and leaders in the event of a fail-over.
   
 - [It's fast as hell.](https://solana.com/solana-milestone-a-multinode-testnet/)  
-  The network leader can theoretically handle 710,000 TPS, and this library additionally caches records locally up to the signed TTL.  
+  The network leader can theoretically handle **710,000 TPS**, and this library additionally caches records locally up to the signed TTL.  
 
-- [It's cool as hell.](https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8)
-  Solana ain't your average blockchain, it pulls all this off with [no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/).
+- [It's cool as hell.](https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8)  
+  Solana ain't your average blockchain, it pulls all this off with **[no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/)**.
 
 ---
 
