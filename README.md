@@ -224,11 +224,11 @@ More info on Solana's novel proof-of-history design, architecture, and available
 
 ## Configuration
 
-Config options can be passed to Solana DNS in a few different ways:
+Config options can be passed to Solana DNS commands (e.g. `./bin/server`) in a few different ways:
 
-1. [Configuration file](#Configuration-File) passed via `--config=path/to/file.env`
-2. [Environment variables](#Environment-Variables) (which override any existing options in the config file)
-3. [CLI parameters](#CLI-Parameters) (which override both env variables and config file params)
+1. [Configuration File](#Configuration-File) passed via `--config=path/to/file.env`
+2. [Environment Variables](#Environment-Variables) (which override any existing options in the config file)
+3. [CLI Parameters](#CLI-Parameters) (which override both env variables and config file params)
 
 ### CLI Parameters
 
