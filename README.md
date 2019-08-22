@@ -79,9 +79,9 @@ The data flows through the stack like this:
     *BPF Rust program on Solana network handles reads/writes of stored data.*  
     `./network/kvstore.rs` (gets uploaded and runs on-chain)  
   
-- ⬇️➡️⬆️ **Solana Block Storage**  
+- ⬇️➡️⬆️ **Solana Blockchain**  
     *Solana provides the data storage layer to hold the records.*  
-    `<Solana internals>` (stored text blobs on-chain)  
+    `<Solana internals>` (stored as text blobs on-chain)  
 
 ### Execution Flow
 
