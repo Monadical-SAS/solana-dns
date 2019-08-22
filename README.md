@@ -105,8 +105,9 @@ npm run upload --credentials=./secrets.conf
 ```bash
 npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
-
-**6. ✅ You're done! Your `solana-dns` is running now.**
+  
+  
+**6. You're done! Your `solana-dns` is running now. ✅**
 
  - **To query it via DNS:**
     ```bash
