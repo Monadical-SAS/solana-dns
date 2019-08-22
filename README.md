@@ -81,7 +81,7 @@ The data flows through the stack like this:
   
 - ⬇️➡️⬆️ **Solana Block Storage**  
     Solana provides the data storage layer to hold the records  
-    `<handled by Solana>` (text blobs located on-chain)  
+    `<Solana internals>` (stored text blobs on-chain)  
 
 ### Execution Flow
 
