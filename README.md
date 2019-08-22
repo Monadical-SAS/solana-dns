@@ -69,7 +69,7 @@ cd solana-dns
 npm install
 ```
 
-**Setup Solana network access and upload the on-chain side of the program:**
+**Create a Solana account to access the network:**
 
 Running code on Solana requires an "account"/wallet with tokens that will be used to run the on-chain part of the DNS server.  
 (Similar to how running Ethereum DAPPs on-chain requires spending some tokens in exchange for CPU time)  
@@ -94,8 +94,10 @@ Choose which Solana network you want to store your records in:
    # Not available yet, check https://solana.com/tds/ for updates
    ```
 
-Then upload the Rust BPF program that runs on-chain to handle the storage requests:
+**Upload the on-chain side of the program using your account:**
+The Rust BPF program runs on the Solana Network to handles requests from your local server.
 ```
+npm run build:bpf-rust
 npm run upload --credentials=./secrets.conf
 ```
 
