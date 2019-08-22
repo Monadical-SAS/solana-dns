@@ -69,7 +69,7 @@ The data flows through the stack like this:
  
 - ⬇️🖥⬆️ **Local Node Server**  
     *Main JavaScript logic handles CLI commands, DNS queries, and HTTP requests.*  
-    `./server/server.js` (runs locally)  
+    `./server/server.js` (runs locally)  / `./server/dns-client.js` (runs locally, resolves any records not found in Solana)
   
 - ⬇️🌐⬆️ **Solana Network API**  
     *Calls out via Solana w3 JSON RPC API to the Solana network.*  
@@ -100,7 +100,7 @@ The code execution flow looks like this:
   
 4. REST API / DNS queries get handled by local node server
    `npm run server` -> `./server/server.js` -> `./server/http-server.js`,`./server/dns-server.js`
-  
+
 5. Local node server calls out to Solana network via Solana Web3 JSON RPC API  
    `./network/api.js` -> `https://beta.testnet.solana.com:8443`
   
@@ -109,6 +109,9 @@ The code execution flow looks like this:
   
 7. Solana blockchain handles storage requests  
    `<solana internal API>` -> `<solana blob storage>`
+
+8. If record is found, results are returned back up the stack, if not, they're resolved via the upstream DNS servers
+   `./server/dns-client.js` -> `<upstream DNS servers>`
 
 ---
 
