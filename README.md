@@ -52,10 +52,17 @@
 
 ## Quickstart
 
-Run the helper script to be guided through an automated setup using the Solana beta testnet:
+This installs all the dependencies, creates a free Solana account on the beta testnet, uploads the on-chain code, and runs a local dns server on `127.0.0.1:5300` using Solana as the backing datastore.
 ```bash
+git clone https://github.com/pirate/solana-dns
+cd solana-dns
+
 ./bin/setup
+./bin/server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380
+
+dig @127.0.0.1 -p 5300 google.com
 ```
+If you prefer not to install packages via helper script or if you encounter any issues, follow the Manual Setup guide below.
 
 ## Manual Setup
 
@@ -74,6 +81,7 @@ Run the helper script to be guided through an automated setup using the Solana b
 ```bash
 git clone https://github.com/pirate/solana-dns
 cd solana-dns
+
 npm install
 ```
 
