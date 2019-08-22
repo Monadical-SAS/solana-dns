@@ -198,7 +198,9 @@ If you don't like helper scripts installing packages and want to understand/fine
 
 ## Manual Setup
 
-**1. Install the language dependencies:**
+(click sections to expand)
+
+<details><summary><b>1. Install the language dependencies...</b></summary>
 
  - Rust https://www.rust-lang.org/tools/install  
    `curl https://sh.rustup.rs -sSf | sh` / `apt install rustup; rustup-init` / `brew install rustup; rustup-init`
@@ -209,7 +211,10 @@ If you don't like helper scripts installing packages and want to understand/fine
  - Docker https://docs.docker.com/install/  
     Required because the Solana Rust BPF builder runs in Docker for better repeatability.
 
-**2. Clone the repo & install the project dependencies:**
+</details>
+
+<details><summary><b>2. Clone the repo & install the project dependencies...</b></summary>
+
 ```bash
 git clone https://github.com/pirate/solana-dns
 cd solana-dns
@@ -217,7 +222,9 @@ cd solana-dns
 npm install
 ```
 
-**3. Create an account on your desired Solana network:**  
+</details>
+
+<details><summary><b>3. Create an account on your desired Solana network...</b></summary>
 
 Running code on Solana requires an "account"/wallet with tokens that will be used to run the on-chain part of the DNS server.  
 (Similar to how running Ethereum DAPPs on-chain requires spending some tokens in exchange for CPU time)  
@@ -242,20 +249,27 @@ Choose which Solana network you want to store your records in:
    # Not available yet, check https://solana.com/tds/ for updates
    ```
 
-**4. Upload the on-chain side of the program using your account:**  
+</details>
+
+<details><summary><b>4. Upload the on-chain side of the program using your account...</b></summary>
+
 Build and upload the Rust BPF program that runs on the Solana net to handle requests from your local `solana-dns` server.
 ```
 ./bin/build
 ./bin/upload --config=./secrets.env
 ```
 
-**5. Run the solana-dns server on localhost:**  
+</details>
+
+<details><summary><b>5. Run the solana-dns server on localhost...</b></summary>
 ```bash
 ./bin/server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
   
-  
-**6. You're done! Your `solana-dns` server should be running now. ✅**
+
+</details>  
+
+<details><summary><b>6. You're done! Your `solana-dns` server should be accessible via the bound ports... ✅</b></summary>
 
  - **To query it via DNS:**
     ```bash
