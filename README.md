@@ -35,7 +35,7 @@
   All records are signed with your wallet private key, and can be verified against your public address.  
   (Optional [linking to a Google account](https://github.com/solana-labs/example-messagefeed#new-user-sign-up) can authenticate your account.)
   
-- [Inherently distributed and fault-tolerant.](https://solana-labs.github.io/book/validator-proposal.html)
+- [Inherently distributed and fault-tolerant.](https://solana-labs.github.io/book/validator-proposal.html)  
   A globally-distributed network of nodes serve as validators, data replicas, and leaders in the event of a fail-over.
   
 - [Inherently immutable.](https://solana-labs.github.io/book/#what-is-a-solana-cluster)  
