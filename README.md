@@ -7,6 +7,8 @@
 (Implemented in <2000 lines of JavaScript, w/ an optional REST API + Web UI)
 <br/><br/>
 <sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
+<br/>
+<sub>You can also refer to this project as "who-dat over brick-string", because why not?!<sub>
 <br/><br/>
 <img src="https://img.shields.io/badge/License-MIT-blue">
 <img src="https://img.shields.io/badge/Status-Proof_of_Concept-red">
