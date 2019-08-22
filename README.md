@@ -6,6 +6,15 @@
 <br/>
 (Implemented in JavaScript and Solana BPF Rust, w/ an optional REST API + Web UI)
 <br/><br/>
+<ul>
+<li>Proof-of-history by design (proves records existed at a given time)</li>
+<li>Authenticated automatically, records are signed with your wallet private key</li>
+<li>Inherently distributed, validated by global validator network</li>
+<li>Inherently immutable, past history can't be modified maliciously/accidentally</li>
+<li>Fast, records are cached locally and network can handle 710,000 TPS (Solana ain't your average blockchain)</li>
+<li>
+</ul>
+<br/><br/>
 <sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
 <br/>
 <sub>You can also refer to this project as "who-dat over brick-string", because why not?!<sub>
