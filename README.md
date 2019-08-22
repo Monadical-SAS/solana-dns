@@ -47,10 +47,10 @@
   The network leader can theoretically handle **710,000 TPS**, and this library additionally caches records locally up to the signed TTL.  
   Solana [ain't your average blockchain](https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8), it pulls all this off with **[no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/)**.  
   See the [Solana Architecture](#Solana-Architecture) section for more info.
-
- - [DNS on the Blockchain makes sense.](https://diode.io/distributed-infrastructure/Why-DNS-on-Blockchain-is-the-next-step-after-DNS-over-HTTPS-19231/)
+  
+ - [DNS on the Blockchain makes sense.](https://diode.io/distributed-infrastructure/Why-DNS-on-Blockchain-is-the-next-step-after-DNS-over-HTTPS-19231/)  
    Given all the properties above, having DNS as the authenticated source-of-truth for DNS is not a bad idea (whether to augment DNSSEC or replace it entirely).  
-   Caching layers that improve backwards-compatibility and speed can always be built on top, but everything gets easier when the underlying store is fast, immutable, and authenticated.
+   Caching layers that improve backwards-compatibility and speed can always be built on top, but everything gets easier when the underlying store is fast, immutable, and authenticated.  
 
 ---
 
