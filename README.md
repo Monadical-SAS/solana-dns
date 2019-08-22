@@ -2,11 +2,11 @@
 <img src="https://i.imgur.com/mOGmEPW.png" alt="Logo" width="400px"/>
 <h1>Solana DNS</h1>
 <br/>
-<sub>a.k.a "who-dat over brick-string"</sub>
-<br/>
 <b>A simple DNS server using the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> to store signed records.</b>
 <br/>
 (Implemented in JavaScript and Solana BPF Rust, w/ an optional REST API + Web UI)
+<br/>
+<sub>a.k.a "who-dat over brick-string"</sub>
 <br/>
 <br/>
 <a href="#Why-Solana-">Why Solana?</a> | 
