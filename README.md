@@ -10,6 +10,7 @@
 <br/>
 <br/>
 <a href="#Why-Solana-">Why Solana?</a> | 
+<a href="#How-does-DNS-work-normally-">How does DNS work normally?</a> | 
 <a href="#Quickstart">Quickstart</a> | 
 <a href="#Documentation">Documentation</a> | 
 <a href="#Manual-Setup">Manual Setup</a> | 
@@ -52,6 +53,10 @@
  - [DNS on the Blockchain makes sense.](https://diode.io/distributed-infrastructure/Why-DNS-on-Blockchain-is-the-next-step-after-DNS-over-HTTPS-19231/)  
    Given all the properties above, having DNS as the authenticated source-of-truth for DNS is not a bad idea (whether to augment DNSSEC or replace it entirely).  
    Caching layers that improve backwards-compatibility and speed can always be built on top, but everything gets easier when the underlying store is fast, immutable, globally-consistent, and authenticated.  
+
+**WARNING: These are all big claims with little proof to back them up. This project is still in idea-phase, so read these as goals, not guarantees!**
+
+---
 
 ### How does DNS work normally?
 
