@@ -39,7 +39,7 @@ npm install
 
 **Setup Solana network access and upload the on-chain side of the program:**
 
-Runing code on-chain requires an "account"/wallet with tokens that will be used to run the on-chain part of the DNS server.
+Runing code on-chain requires an "account"/wallet with tokens that will be used to run the on-chain part of the DNS server.  
 Choose which Solana network you want to store your records in (both provide free air-dropped tokens to get started, no $ needed):
 
 - Using the public beta testnet (easiest, but all records will be public)
@@ -53,7 +53,7 @@ Choose which Solana network you want to store your records in (both provide free
    npm run signup --net=localnet --save-credentials=./secrets.conf
    ```
 
-Then upload the Rust BPF program that runs on-chain to handle the storage requests
+Then upload the Rust BPF program that runs on-chain to handle the storage requests:
 ```
 npm run upload --credentials=./secrets.conf
 ```
