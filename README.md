@@ -99,35 +99,64 @@ Specify which upstream DNS servers to send requests to when the query cannot be 
 
 
 
-## REST API
+## Usage
 
-* GET `/api/dns/A/{domain}`
+### CLI
 
-    Return the IP address for the given given domain.
+#### Start the server
 
-* PUT `/api/dns/A/{domain}`
+```bash
+npm run server [options]  # see Configuration section for options
+```
 
-    Create or Modify the IP address for the given domain.
+#### Add/Modify/Delete Records
 
-* DELETE `/api/dns/A/{domain}`
+TODO
 
-    Forget the IP address record for the given domain.
+### Rest API
 
-* GET `/api/dns/A/.`
+#### GET `/api/dns/A/{domain}`
 
-    List all host to IP address mappings that the local server knows about.
+Return the IP address for the given given domain.
 
-* DELETE `/api/dns/A/?force=true`
+#### PUT `/api/dns/A/{domain}`
 
-    Forget all records.
+Create or Modify the IP address for the given domain.
 
-* GET `/api/dns/zone`
+#### DELETE `/api/dns/A/{domain}`
 
-    Return the DNS ZONE.
+Forget the IP address record for the given domain.
 
-* GET `/api/dns/status`
+#### GET `/api/dns/A/.`
 
-    Return the DNS server status.
+List all host to IP address mappings that the local server knows about.
+
+#### DELETE `/api/dns/A/?force=true`
+
+Forget all records.
+
+#### GET `/api/dns/zone`
+
+Return the DNS ZONE.
+
+#### GET `/api/dns/status`
+
+Return the DNS server status.
+
+### DNS over HTTPS API
+
+TODO: implement a Google/Cloudflare-compatible DNS over HTTPS API 
+
+- https://developers.google.com/speed/public-dns/docs/doh/
+- https://developers.cloudflare.com/1.1.1.1/dns-over-https/request-structure/
+
+### JSON API
+
+TODO: implement a Google/Cloudflare-compatible DNS over HTTPS JSON API
+
+- https://developers.google.com/speed/public-dns/docs/doh/json
+- https://developers.cloudflare.com/1.1.1.1/dns-over-https/json-format/
+
 
 ## TODO
 
