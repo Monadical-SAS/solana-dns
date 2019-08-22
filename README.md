@@ -4,7 +4,7 @@
 <br/>
 <b>A simple DNS server using the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> to store records.</b>
 <br/>
-(Implemented in <1000 lines of ES6 JavaScript, including the optional REST API + Web UI)
+(Implemented in <2000 lines of JavaScript, w/ an optional REST API + Web UI)
 <br/><br/>
 <sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
 </div>
