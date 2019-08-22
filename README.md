@@ -154,6 +154,10 @@ Build and upload the Rust BPF program that runs on the Solana net to handle requ
 
 ## Architecture
 
+<a href="#Data-Flow">Data Flow</a> | 
+<a href="#Execution-Flow">Execution Flow</a> | 
+<a href="#Solana-Architecture">Solana Architecture</a>
+
 ### Data flow
 
 The data flows through the stack like this:
@@ -205,6 +209,16 @@ The code execution flow looks like this:
 
 7. If record is found, results are returned back up the stack, if not, they're resolved via the upstream DNS servers
    `./server/dns-client.js` -> `<upstream DNS servers>`
+
+### Solana Architecture
+
+More info on Solana's novel proof-of-history design, architecture, and available APIs can be found here:
+
+- https://solana.com
+- https://solana.com/developers/
+- https://solana-labs.github.io/book/introduction.html
+- https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8
+- https://www.reddit.com/r/solana/
 
 ---
 
@@ -295,6 +309,12 @@ env SOLANA_DNS_BIND_DNS=127.0.0.1:5300 ./bin/server ...
 ---
 
 ## Usage
+
+<a href="#CLI">CLI</a> | 
+<a href="#REST-API">REST API</a> | 
+<a href="#DNS-over-HTTPS-API">DNS over HTTPS API</a> | 
+<a href="#JSON-API">JSON API</a> | 
+<a href="#Web-UI">Web UI</a>
 
 ---
 
@@ -411,6 +431,10 @@ TODO: implement a Google/Cloudflare-compatible DNS over HTTPS JSON API
 
 - https://developers.google.com/speed/public-dns/docs/doh/json
 - https://developers.cloudflare.com/1.1.1.1/dns-over-https/json-format/
+
+### Web UI
+
+TODO: document Web UI features.
 
 ---
 
