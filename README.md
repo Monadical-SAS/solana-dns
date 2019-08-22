@@ -9,6 +9,7 @@
 <br/>
 <a href="#Why-Solana-">Why Solana?</a> | 
 <a href="#Quickstart">Quickstart</a> | 
+<a href="#Manual-Setup">Manual Setup</a> | 
 <a href="#Architecture">Architecture</a> | 
 <a href="#Configuration">Configuration</a> | 
 <a href="#Usage">Usage</a>
@@ -51,6 +52,13 @@
 
 ## Quickstart
 
+Run the helper script to be guided through an automated setup using the Solana beta testnet:
+```bash
+./bin/setup
+```
+
+## Manual Setup
+
 **1. Install the language dependencies:**
 
  - Rust https://www.rust-lang.org/tools/install  
@@ -78,14 +86,14 @@ Choose which Solana network you want to store your records in:
 - **Using the public beta testnet** (easiest, all records publicly accessible, **free**):  
     You automatically get free air-dropped tokens to run code on the beta net. 
     ```bash
-    npm run signup --net=beta --save-config=./secrets.env  # or use --net=edge
+    ./bin/signup --net=beta --save-config=./secrets.env  # or use --net=edge
     ```
 
 - **Using a local testnet** (harder, no data accessible off your local machine, **free**):  
    You get infinite free tokens on your local test net because you own it!
    ```bash
-   npm run localnet:update && npm run localnet:up
-   npm run signup --net=localnet --save-config=./secrets.env
+   ./bin/localnet > localnet.log &
+   ./bin/signup --net=localnet --save-config=./secrets.env
    ```
 
 - **Using the public mainnet** (hardest, all records publicly accessible, **real $ needed**):  
@@ -97,13 +105,13 @@ Choose which Solana network you want to store your records in:
 **4. Upload the on-chain side of the program using your account:**  
 Build and upload the Rust BPF program that runs on the Solana net to handle requests from your local `solana-dns` server.
 ```
-npm run build:bpf-rust
-npm run upload --config=./secrets.env
+./bin/build
+./bin/upload --config=./secrets.env
 ```
 
 **5. Run the solana-dns server on localhost:**  
 ```bash
-npm run server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
+./bin/server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
   
   
@@ -154,31 +162,28 @@ The data flows through the stack like this:
 
 The code execution flow looks like this:
 
-0. BPF Rust program gets compiled for for Solana (during setup)   
-   `npm run build` -> `./network/build.sh`  
-  
-2. New Solana account gets created with some free air-dropped tokens (needed to run code on-chain)  
-   `npm run signup` -> `./network/signup.js`  
+1. New Solana account gets created with some free air-dropped tokens (needed to run code on-chain)  
+   `./bin/signup` -> `./network/signup.js`  
    (only works on testnet/localnet, you're not getting free tokens on mainnet that easy 😉)
   
-3. BPF Rust program gets uploaded to the Solana chain under new account  
-   `npm run upload` -> `./network/upload.js` -> `./network/kvstore.rs`  
+2. BPF Rust program gets uploaded to the Solana chain under new account  
+   `./bin/upload` -> `./bin/build ./network/kvstore.rs` -> `./network/upload.js ./network/kvstore.rs` 
    BPF Loader runs to push program to chain via configured Solana network's endpoint, e.g. `https://beta.testnet.solana.com:8443` 
   
-4. REST API / DNS queries get handled by local node server  
-   `npm run server` -> `./server/server.js` -> `./server/http-server.js`,`./server/dns-server.js`
+3. REST API / DNS queries get handled by local node server  
+   `./bin/server` -> `./server/server.js` -> `./server/http-server.js`,`./server/dns-server.js`
 
-5. Local node server calls out to Solana network via Solana Web3 JSON RPC API  
+4. Local node server calls out to Solana network via Solana Web3 JSON RPC API  
    `./network/api.js` -> `https://beta.testnet.solana.com:8443`
   
-6. BPF Rust program runs on Solana network to handle record read/write requests  
+5. BPF Rust program runs on Solana network to handle record read/write requests  
    `./network/kvstore.rs` -> `<solana internal API>`  
    (Spends account tokens in exchange for the CPU time)
   
-7. Solana blockchain handles storage requests  
+6. Solana blockchain handles storage requests  
    `<solana internal API>` -> `<solana blob storage>`
 
-8. If record is found, results are returned back up the stack, if not, they're resolved via the upstream DNS servers
+7. If record is found, results are returned back up the stack, if not, they're resolved via the upstream DNS servers
    `./server/dns-client.js` -> `<upstream DNS servers>`
 
 ---
@@ -237,7 +242,7 @@ When running the server, the path to the config file should be specified via the
 
 The config file is initially generated during setup when running:
 ```bash
-npm signup --net=beta --save-config=./secrets.env
+./bin/signup --net=beta --save-config=./secrets.env
 ```
 It can also be modified after the initial signup to change the credentials or include some additional options.
 
@@ -262,7 +267,7 @@ SOLANA_DNS_UPSTREAM=1.1.1.1,8.8.8.8,208.67.222.222
 
 The options in the config file can also be passed as environment varaibles using the same format. e.g.:  
 ```bash
-env SOLANA_DNS_BIND_DNS=127.0.0.1:5300 npm run server ...
+env SOLANA_DNS_BIND_DNS=127.0.0.1:5300 ./bin/server ...
 ```
 
 (This works well to pass config when running inside a Docker container)
@@ -279,12 +284,12 @@ env SOLANA_DNS_BIND_DNS=127.0.0.1:5300 npm run server ...
 
 See the [Configuration](#Configuration) section for a list of the options available.
 ```bash
-npm run server [options]
+./bin/server [options]
 ```
 
 To bind to any ports below 1000, most systems require running the program as root.
 ```bash
-sudo npm run server [options]
+sudo ./bin/server [options]
 ```
 
 #### Start the server on port 53
@@ -312,13 +317,13 @@ with any existing local DNS server. To bind to the the standard DNS port (UDP `5
     # listening on ports below 1000 requires sudo on most systems
 
     # to run a server that responds to DNS queries from localhost only, run:
-    sudo npm run server --bind-dns=127.0.0.1:53
+    sudo ./bin/server --bind-dns=127.0.0.1:53
 
     # to run a server that responds to DNS queries from your local network only, run:
-    sudo npm run server --bind-dns=x.x.x.x:53  # replace x.x.x.x with your LAN IP
+    sudo ./bin/server --bind-dns=x.x.x.x:53  # replace x.x.x.x with your LAN IP
 
     # to run a public server that responds to DNS queries from any location, run:
-    sudo npm run server --bind-dns=0.0.0.0:53
+    sudo ./bin/server --bind-dns=0.0.0.0:53
     ```
 3. Optional: tell your system to use the local DNS server for all queries:
     
