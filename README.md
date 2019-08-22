@@ -38,15 +38,23 @@ npm install
 ```
 
 **Setup Solana network access and upload the on-chain side of the program:**
-```bash
-# Using the public beta testnet (easiest, but all records will be public)
-npm run signup --net=beta --save-credentials=./secrets.conf
 
-# Using a localnet (harder, but no data leaves your local machine)
-npm run localnet:update && npm run localnet:up
-npm run signup --net=localnet --save-credentials=./secrets.conf
+Runing code on-chain requires an "account"/wallet with tokens that will be used to run the on-chain part of the DNS server.
+Choose which Solana network you want to store your records in (both provide free air-dropped tokens to get started, no $ needed):
 
-# Then upload the Rust BPF program that runs on-chain to handle the storage requests
+- Using the public beta testnet (easiest, but all records will be public)
+    ```bash
+    npm run signup --net=beta --save-credentials=./secrets.conf
+    ```
+
+- Using a localnet (harder, but no data leaves your local machine)
+   ```bash
+   npm run localnet:update && npm run localnet:up
+   npm run signup --net=localnet --save-credentials=./secrets.conf
+   ```
+
+Then upload the Rust BPF program that runs on-chain to handle the storage requests
+```
 npm run upload --credentials=./secrets.conf
 ```
 
