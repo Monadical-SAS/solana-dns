@@ -6,15 +6,6 @@
 <br/>
 (Implemented in JavaScript and Solana BPF Rust, w/ an optional REST API + Web UI)
 <br/><br/>
-<ul>
-<li>Proof-of-history by design (proves records existed at a given time)</li>
-<li>Authenticated automatically, records are signed with your wallet private key</li>
-<li>Inherently distributed, validated by global validator network</li>
-<li>Inherently immutable, past history can't be modified maliciously/accidentally</li>
-<li>Fast, records are cached locally and network can handle 710,000 TPS (Solana ain't your average blockchain)</li>
-<li>
-</ul>
-<br/><br/>
 <sup>(Based on code from <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</sup>
 <br/>
 <sub>You can also refer to this project as "who-dat over brick-string", because why not?!<sub>
@@ -23,6 +14,31 @@
 <img src="https://img.shields.io/badge/Status-Proof_of_Concept-red">
 <img src="https://img.shields.io/badge/Powered_by-Solana-02FEAD">
 </div>
+
+---
+
+**WARNING: this project is not actually implemented yet, it's just a README! Check back soon for runnable code!**
+
+### Why Solana?
+
+- [Provable history by design.](https://medium.com/solana-labs/proof-of-history-a-clock-for-blockchain-cf47a61a9274)  
+  Records are cryptographically provable to have existed at a given time.
+  
+- [Inherently authenticated.](https://github.com/solana-labs/example-messagefeed#new-user-sign-up)  
+  All records are signed with your wallet private key, and can be verified against your public address.  
+  (Optional [linking to a Google account](https://github.com/solana-labs/example-messagefeed#new-user-sign-up) can authenticate your account.)
+  
+- [Inherently distributed and fault-tolerant.](https://solana-labs.github.io/book/validator-proposal.html)
+  A globally-distributed network of nodes serve as validators, data replicas, and leaders in the event of a fail-over.
+  
+- [Inherently immutable.](https://solana-labs.github.io/book/#what-is-a-solana-cluster)  
+  Past history can never be modified, whether by accident or maliciously.
+  
+- [It's fast as hell.](https://solana.com/solana-milestone-a-multinode-testnet/)  
+  The network leader can theoretically handle 710,000 TPS, and this library additionally caches records locally up to the signed TTL.  
+
+- [It's cool as hell.](https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8)
+  Solana ain't your average blockchain, it pulls all this off with [no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/).
 
 ---
 
