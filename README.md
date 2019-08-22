@@ -47,7 +47,10 @@
   The network leader can theoretically handle **710,000 TPS**, and this library additionally caches records locally up to the signed TTL.  
 
 - [It's cool as hell.](https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8)  
-  Solana ain't your average blockchain, it pulls all this off with **[no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/)**.  See the [Solana Architecture](#Solana-Architecture) section for more info.
+  Solana ain't your average blockchain, it pulls all this off with **[no sharding or validation delays](https://solana.com/no-sharding-podcast-episode-2-how-does-solana-work/)**.  
+  See the [Solana Architecture](#Solana-Architecture) section for more info.
+
+https://diode.io/distributed-infrastructure/Why-DNS-on-Blockchain-is-the-next-step-after-DNS-over-HTTPS-19231/
 
 ---
 
@@ -214,11 +217,32 @@ The code execution flow looks like this:
 
 More info on Solana's novel proof-of-history design, architecture, and available APIs can be found here:
 
+#### Intro
 - https://solana.com
 - https://solana.com/developers/
-- https://solana-labs.github.io/book/introduction.html
+- https://solana-labs.github.io/book/
+- https://github.com/solana-labs/whitepaper/blob/master/solana-whitepaper-en.pdf
 - https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8
+- https://explorer.solana.com/
 - https://www.reddit.com/r/solana/
+
+#### Example Code
+- https://github.com/solana-labs/example-webwallet
+- https://github.com/solana-labs/example-messagefeed
+- https://github.com/solana-labs/example-tictactoe
+
+#### Source Code & API Reference
+- https://solana-labs.github.io/solana-web3.js/
+- https://solana-labs.github.io/solana-web3.js/class/src/bpf-loader.js~BpfLoader.html
+- https://github.com/solana-labs/rust-bpf-builder
+- https://github.com/solana-labs/solana
+- https://github.com/solana-labs/blockexplorer
+- https://github.com/solana-labs/solminer
+- https://crates.io/users/solana-grimes
+- https://github.com/solana-labs/solana/tree/master/client/src
+- https://github.com/solana-labs/solana/tree/master/programs
+- https://docs.rs/solana-wallet/0.17.2/solana_wallet/wallet/enum.WalletCommand.html
+- https://docs.rs/solana-kvstore/0.17.2/solana_kvstore/struct.KvStore.html
 
 ---
 
@@ -446,7 +470,7 @@ TODO: document Web UI features.
 - [ ] Implement `./bin/signup` (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/util/new-system-account-with-airdrop.js)
 - [ ] Implement `./bin/upload` to upload the compiled Rust BPF program on-chain (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/server/message-feed.js#L85)
 - [ ] Implement `./bin/build` to compile the Rust BPF program (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/do.sh)
-- [ ] Implement the Rust BPF kvstore program (in a way that can re-used separately for other projects (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/src/lib.rs)
+- [ ] Implement the Rust BPF kvstore program in a way that can re-used separately for other projects (based on https://github.com/solana-labs/example-messagefeed/blob/master/bpf-rust-programs/messagefeed/src/lib.rs)
 - [ ] Implement `./network/api.js` to talk to the Rust BPF program running on the Solana network (based on https://github.com/solana-labs/example-messagefeed/blob/master/src/programs/message-feed.js)
 - [ ] Implement `./bin/server` -> `./server/server.js` Solana DNS server to call out to API and get/set DNS key:value records (based on https://github.com/hbouvier/dns/blob/master/lib/dns.js)
 - [ ] Implement `./server/dns-server.js` to bind to a UDP port and serve DNS queries
