@@ -9,8 +9,8 @@
 <sub>a.k.a "who-dat over very-fast-brick-string"</sub>
 <br/>
 <br/>
-<a href="#Why-Solana-">Why Solana?</a> | 
-<a href="#How-does-DNS-work-normally-">How does DNS work normally?</a> | 
+<a href="#Why-Solana">Why Solana?</a> | 
+<a href="#How-does-DNS-work-normally">How does DNS work normally?</a> | 
 <a href="#Quickstart">Quickstart</a> | 
 <a href="#Documentation">Documentation</a> | 
 <a href="#Manual-Setup">Manual Setup</a> | 
