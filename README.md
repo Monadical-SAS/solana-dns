@@ -137,7 +137,8 @@ will always arrive signed with a key that can be verified to ensure malicous mid
 
 - Solana may be fast, but the RPC communication with the Solana chain may be significantly slower than DNS over UDP
 - If RPC communication becomes the bottleneck, we end up having to implement time-synchronized caching servers with fairly 
-complex validation/staking mechanics to penalize clock drift and inadherence to signed record TTL expiry times
+complex validation/staking mechanics to penalize clock drift and inadherence to signed record TTL expiry times.  This problem becomes slightly simpler
+if we only allow caching on localhost, with no middleboxes between the local Solana DNS server and the Solana chain API.
 - It may not be necessary to replace DNSSEC entirely, it's possible to just sign the same root public key used on the TLD
 in Solana, and use DNSSEC from there on down the chain (checking against the Solana root key instead of the implicitly trusted root-server-published key)
 - The mechanics around domain ownership verification need to be figured out (or whether it's even necessary with Solana DNS)
