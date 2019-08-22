@@ -69,7 +69,7 @@ cd solana-dns
 npm install
 ```
 
-**3. Create a Solana account to access the network:**
+**3. Create an account on your desired Solana network:**
 
 Running code on Solana requires an "account"/wallet with tokens that will be used to run the on-chain part of the DNS server.  
 (Similar to how running Ethereum DAPPs on-chain requires spending some tokens in exchange for CPU time)  
