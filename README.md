@@ -12,7 +12,7 @@
 <a href="#Architecture">Architecture</a> | 
 <a href="#Configuration">Configuration</a> | 
 <a href="#Usage">Usage</a>
-<br/>
+<br/><br/>
 <img src="https://img.shields.io/badge/License-MIT-blue"/>
 <img src="https://img.shields.io/badge/Status-Proof_of_Concept-red"/>
 <img src="https://img.shields.io/badge/Powered_by-Solana-02FEAD"/>
