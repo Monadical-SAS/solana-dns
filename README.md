@@ -1,8 +1,16 @@
-# Solana DNS
+<p align="center">
 
-A simple DNS server that uses the high-performance [Solana](https://solana.com/developers/) blockchain as the backing datastore (with an optional REST API + Web UI).
+<img src="https://i.imgur.com/mOGmEPW.png" alt="Logo" width="400px"/>
+
+<h1>Solana DNS</h1>
+
+A simple DNS server that uses the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> as the backing datastore (with an optional REST API + Web UI).
 
 (Loosely based on https://github.com/hbouvier/dns and https://github.com/solana-labs/example-messagefeed)
+
+</p>
+
+---
 
 ## Quickstart
 
@@ -31,6 +39,8 @@ Open http://127.0.0.1:5380
 curl http://127.0.0.1:5380/dns/api/v1/name/google.com
 ```
 
+---
+
 ## Configuration
 
 #### `--bind-dns`
@@ -42,6 +52,8 @@ curl http://127.0.0.1:5380/dns/api/v1/name/google.com
 
 Specify the local [ip]:[port] to bind the DNS server to. It must be `0.0.0.0:53` to act
 as a standard public DNS server that can accept requests from any client (instead of just localhost).
+
+See the [instructions below](#start-the-server-on-port-53) if you want to bind to port `53` instead. 
 
 #### `--bind-http`
 
@@ -62,9 +74,11 @@ order to accept HTTP requests from any client (instead of just localhost).
 
 Specify which upstream DNS servers to send requests to when the query cannot be resolved via Solana DNS.
 
-
+---
 
 ## Usage
+
+---
 
 ### CLI
 
@@ -119,6 +133,8 @@ with any existing local DNS server. To bind to the the standard DNS port (UDP `5
 
 TODO
 
+---
+
 ### Rest API
 
 #### GET `/api/dns/A/{domain}`
@@ -149,12 +165,16 @@ Return the DNS ZONE.
 
 Return the DNS server status.
 
+---
+
 ### DNS over HTTPS API
 
 TODO: implement a Google/Cloudflare-compatible DNS over HTTPS API 
 
 - https://developers.google.com/speed/public-dns/docs/doh/
 - https://developers.cloudflare.com/1.1.1.1/dns-over-https/request-structure/
+
+---
 
 ### JSON API
 
@@ -163,6 +183,7 @@ TODO: implement a Google/Cloudflare-compatible DNS over HTTPS JSON API
 - https://developers.google.com/speed/public-dns/docs/doh/json
 - https://developers.cloudflare.com/1.1.1.1/dns-over-https/json-format/
 
+---
 
 ## TODO
 
