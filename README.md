@@ -83,8 +83,14 @@ Specify which upstream DNS servers to send requests to when the query cannot be 
 
 #### Start the server
 
+See the [Configuration](#Configuration) section for a list of the options available.
 ```bash
-npm run server [options]  # see Configuration section for options
+npm run server [options]
+```
+
+To bind to any ports below 1000, most systems require running the program as root.
+```bash
+sudo npm run server [options]
 ```
 
 #### Start the server on port 53
