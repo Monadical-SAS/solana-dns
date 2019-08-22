@@ -63,7 +63,7 @@ curl http://127.0.0.1:5380/dns/api/v1/name/google.com
 
 The data flows through the stack like this:
 
-- ⬇️ **User**  
+- ⬇️📃 **User**  
     Makes requests via DNS or HTTP  
     Web UI `./client/web.js` / DNS API / HTTP API  
  
@@ -79,7 +79,7 @@ The data flows through the stack like this:
     BPF Rust program on Solana network handles reads/writes of stored data  
     `network/kvstore.rs` (gets uploaded and runs on-chain)  
   
-- 🔄⬆️ **Solana Block Storage**  
+- ⬇️📃⬆️ **Solana Block Storage**  
 Solana provides the data storage layer to hold the records  
 `<handled by Solana>` (text blobs located on-chain)  
 
