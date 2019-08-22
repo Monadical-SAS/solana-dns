@@ -92,12 +92,12 @@ stating that `1.1.1.1` was the server that answered the request
   + `ns1.digitalocean.com`,
   + `1.1.1.1`,
   + the `.com` root servers, 
-  + and every middle-box between you and them 
+  + and every middle-box between you and them  
   are **all** non-malicious, free of bugs, and are otherwise functioning perfectly.
 
 - the requests and responses are entirely in plaintext, making it trivial for middle-boxes to intercept, record, and modify query content
 - the responses are unsigned and unauthenticated, meaning the user has no idea if the you were the one who created
-  that DNS record, or if a malicious/buggy/hacked middle-box just decided to return a different value randomly
+  that DNS record, or if a malicious/buggy/hacked middle-box just decided to return a different value randomly.  
   With no signature or public key to verify against, there's no way to know whether the response value has been tampered with.
 
 **Enter DNSSEC & DNS-over-HTTPS... two separate technologies aiming to solve two of the biggest issues.**
@@ -121,7 +121,7 @@ in Solana DNS because the public key is the user's wallet public key, which is i
 Solana has no power to change the public key because the chain forms an immutable record, and only later statements signed with a revocation key
 are recognized by clients as authorized to change the public key in control of a given domain.
 
-The exact mechanics of how domain ownership verification will be carried out, or whether it's even necessar with Solana DNS 
+The exact mechanics of how domain ownership verification will be carried out, or whether it's even necessary with Solana DNS 
 have yet to be fully designed.
 
 However, we're confident that given the power of an immutable, globally sychronized database, with key-based identity baked in, 
