@@ -60,6 +60,8 @@
 
 ### How does DNS work normally?
 
+(click sections to expand)
+
 <details><summary><b>This is a simplified example of a standard DNS setup process (without Solana DNS or DNSSEC):</b></summary>
 
 1. You register a domain `example.com` on the Namecheap Registrar
