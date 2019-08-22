@@ -1,14 +1,11 @@
-<p align="center">
-
+<div align="center">
 <img src="https://i.imgur.com/mOGmEPW.png" alt="Logo" width="400px"/>
-
 <h1>Solana DNS</h1>
-
+<br/>
 A simple DNS server that uses the high-performance <a href="https://solana.com/developers/">Solana blockchain</a> as the backing datastore (with an optional REST API + Web UI).
-
-(Loosely based on https://github.com/hbouvier/dns and https://github.com/solana-labs/example-messagefeed)
-
-</p>
+<br/>
+<small>(Loosely based on <a href="https://github.com/hbouvier/dns">hbouvier/dns</a> and <a href="https://github.com/solana-labs/example-messagefeed">solana-labs/example-messagefeed</a>)</small>
+</div>
 
 ---
 
