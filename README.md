@@ -262,6 +262,7 @@ Build and upload the Rust BPF program that runs on the Solana net to handle requ
 </details>
 
 <details><summary><b>5. Run the solana-dns server on localhost...</b></summary>
+
 ```bash
 ./bin/server --bind-dns=127.0.0.1:5300 --bind-http=127.0.0.1:5380 --upstream=1.1.1.1,8.8.8.8
 ```
