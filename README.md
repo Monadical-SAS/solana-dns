@@ -101,10 +101,6 @@ Specify which upstream DNS servers to send requests to when the query cannot be 
 
 ## REST API
 
-* GET `/api/dns/A`
-
-    List all host to IP address mappings that the local server knows about.
-
 * GET `/api/dns/A/{domain}`
 
     Return the IP address for the given given domain.
@@ -116,6 +112,10 @@ Specify which upstream DNS servers to send requests to when the query cannot be 
 * DELETE `/api/dns/A/{domain}`
 
     Forget the IP address record for the given domain.
+
+* GET `/api/dns/A/.`
+
+    List all host to IP address mappings that the local server knows about.
 
 * DELETE `/api/dns/A/?force=true`
 
