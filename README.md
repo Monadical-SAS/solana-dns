@@ -57,6 +57,42 @@ curl http://127.0.0.1:5380/dns/api/v1/name/google.com
 
 ---
 
+## Architecture
+
+### Data flow
+
+The data flows through the stack like this:
+
+`User` Makes requests via DNS or HTTP  
+↕️  
+`src/server.js` Main JavaScript logic handles CLI commands, DNS queries, and HTTP requests (runs locally)  
+↕️  
+`network/api.js` Calls out via Solana w3 JSON RPC API to the Solana network (runs locally, calls `https://beta.testnet.solana.com:8443` Solana Network endpoint)  
+↕️  
+`network/kvstore.rs` BPF Rust program on Solana network handles reads/writes of stored data (gets uploaded and runs on-chain)  
+↕️  
+`Solana Blockchain` Solana provides the data storage layer to hold the records (text blobs located on-chain)  
+
+### Execution Flow
+
+The code execution flow looks like this:
+
+1. Install dependencies and compile the BPF Rust program for Solana  
+   `npm run build` -> `./network/build.sh`  
+  
+2. Creates new Solana account with some free air-dropped tokens needed in order to run code on-chain  
+   `npm run signup` -> `./network/signup.js`  
+   (only works on testnet or localnet, you're not getting free tokens on mainnet that easy 😉)
+  
+3. Uploads the rust Key:Value store program to the Solana chain
+   `npm run upload` -> `./network/upload.js` -> `./network/kvstore.rs`  
+   BPF Loader runs to push program to chain via Solana-provided network endpoint `https://beta.testnet.solana.com:8443` 
+  
+4. Local node server handles REST API / DNS queries and writes resulting key:values for the records to the chain via Solana Web3 JSON RPC API
+   `npm run server` -> `./server/server.js` -> `./server/http-server.js`,`./server/dns-server.js` -> `./network/api.js`
+
+---
+
 ## Configuration
 
 #### `--bind-dns=[host]:[port]`
