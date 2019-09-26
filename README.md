@@ -31,6 +31,8 @@
 
 ## Why Solana?
 
+It allows us to replace centralized root authorizy servers like `.com` with a high-speed, decentralized system while retaining full compatibility with all regular DNS clients and the rest of the DNS ecosystem.
+
 - [Provable history by design.](https://medium.com/solana-labs/proof-of-history-a-clock-for-blockchain-cf47a61a9274)  
   Records are cryptographically provable to have existed at a given time.
   
